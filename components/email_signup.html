@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> 회원가입 </title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/styles.css">
+        <script>
+            function pwd_confirm() {
+                if(document.getElementById("password").value != document.getElementById("password_confirm").value) {
+                    alert("비밀번호가 일치하지 않습니다.");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <div class = "header">
+            <div class = "logo" style = "flex-grow: 10">
+                <p> <a href = "home.html"> 그룹밀 </a> </p>
+            </div>
+        </div>
+        <div class = "content">
+            <div class = "content_title">
+                <p> 회원가입 </p>
+            </div>
+            <hr style = "margin-left: 20px; margin-right: 20px; ">
+            <form id = "signup_form" method = "POST" action = "home.html" onsubmit = "return pwd_confirm()">
+                <p> <label> <span> 닉네임<span style = "display: inline; color: red;">*</span>: </span> <input type = "text" name = "nick" maxlength = "15" autofocus required/> </label> </p>
+                <p> <label> <span> 이메일<span style = "display: inline; color: red;">*</span>: </span> <input type = "email" name = "email" maxlength = "50" required/> </label> </p>
+                <p> <label> <span> 성별<span style = "display: inline; color: red;">*</span>: </span> 남 <input type = "radio" name = "gender" required/> 여 <input type = "radio" name = "gender"/> </label> </p>
+                <p> <label> <span> 나이<span style = "display: inline; color: red;">*</span>: </span> <input type = "text" name = "age" pattern = "\d+" maxlength = "3" required/> </label> </p>
+                <p> <label> <span> 비밀번호<span style = "display: inline; color: red;">*</span>: </span> <input type = "password" name = "password" id = "password" maxlength = "100" required/> </label></p>
+                <p> <label> <span> 비밀번호 확인<span style = "display: inline; color: red;">*</span>: </span> <input type = "password" name = "password_confirm" id = "password_confirm" maxlength = "100" required/> </label></p>
+                <p> <label> <span> 이미지: </span> <input type = "file" name = "img" accept = "image/png, image/jpeg"/> </label> </p>
+                <p> <label> <span> MBTI: </span> <input type = "text" name = "mbti" maxlength = "10"/> </label> </p>
+                <p> <label> <span> SNS ID: </span> <input type = "text" name = "snsId" maxlength = "30"/> </label></p>
+                <input type = "hidden" name = "report" value = "0"/>
+                <p> <button type = "submit" name = "signup_btn"> 회원가입 </button> </p>
+            </form>
+        </div>
+    </body>
+</html>

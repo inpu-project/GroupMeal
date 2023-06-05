@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> 메인페이지 </title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/styles.css">
+        <script type = "text/javascript" src = "../js/all_pages.js"> </script>
+        <script>
+            function show_mealmate() {
+                document.getElementById("form_mealmate").style.display = "block";
+                document.getElementById("form_orderfee").style.display = "none";
+                document.getElementById("mealmate_nav").style.backgroundColor = "#D3D3D3";
+                document.getElementById("orderfee_nav").style.backgroundColor = "#FFFFFF";
+            }
+            function show_orderfee() {
+                document.getElementById("form_mealmate").style.display = "none";
+                document.getElementById("form_orderfee").style.display = "block";
+                document.getElementById("mealmate_nav").style.backgroundColor = "#FFFFFF";
+                document.getElementById("orderfee_nav").style.backgroundColor = "#D3D3D3";
+            }
+            function check_age() {
+                let age_checkboxs = document.getElementsByName("age_mealmate");
+                let checked_num = 0;
+                for(let i = 0; i < age_checkboxs.length; i++) if(age_checkboxs[i].checked) checked_num++;
+                if(checked_num == 0) {
+                    alert("선호 나이대를 입력하지 않았습니다");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <div class = "header">
+            <div class = "menu_icon" style = "flex-grow: 1"> 
+                <img src = "../img/menu-icon.png" alt = "menu-icon" onclick = "menu_onclick()">
+            </div>
+            <div class = "logo" style = "flex-grow: 10">
+                <p> <a href = "home.html"> 그룹밀 </a> </p>
+            </div>
+            <div class = "user" style = "flex-grow: 1">
+                <div class = "user_logo" onclick = "user_onclick()">
+                    <p id = "user_name"> 박 </p>
+                </div>
+                <div id = "user_box" style = "display: none;">
+                    <p style = "cursor: pointer;" onclick = "location.href = 'profile.html'"> Profile </p>
+                    <hr>
+                    <p style = "cursor: pointer;" onclick = "logout()"> Logout </p>
+                </div>
+            </div>
+        </div>
+        <div id = "menu_list" style = "display: none;">
+            <nav>
+                <ul>
+                    <li> <p> <a href = "find_mealmate.html">밥친구 찾기</a> </p> </li>
+                    <li> <p> <a href = "find_orderfee.html">배달비 분담 찾기</a></p></li>
+                </ul>
+            </nav>
+        </div>
+        <div class = "content">
+            <div class = "content_title">
+                <p> 신청 </p>
+            </div>
+            <hr style = "margin-left: 20px; margin-right: 20px; ">
+            <div class = "post_options">
+                <div style = "background-color: #D3D3D3;" id = "mealmate_nav" onclick = "show_mealmate()"> <p> 밥친구 신청 </p> </div>
+                <div style = "background-color: #FFFFFF;" id = "orderfee_nav" onclick = "show_orderfee()"> <p> 배달비 분담 신청 </p> </div>
+            </div>
+            <form id = "form_mealmate" method = "POST" style = "display: block;" action = "find_mealmate.html" onsubmit = "return check_age()">
+                <p> <label> <span> 선호 성별: </span> 남 <input type = "checkbox" name = "gender_mealmate" required/> 여 <input type = "checkbox" name = "gender"/> </label> </p>
+                <p> <label> <span> 선호 나이대: </span>
+                    20대 <input type = "checkbox" name = "age_mealmate"/>
+                    30대 <input type = "checkbox" name = "age_mealmate"/>
+                    40대 <input type = "checkbox" name = "age_mealmate"/>
+                    50대 <input type = "checkbox" name = "age_mealmate"/>
+                    60대~ <input type = "checkbox" name = "age_mealmate"/>
+                </label> </p>
+                <p> <label> <span> 선호 음식: </span> <input type = "text" name = "food_mealmate" required/> </label> </p>
+                <p> <input type = "submit" name = "submit_mealmate" value = "작성"/> </p>
+            </form>
+            <form id = "form_orderfee" method = "POST" style = "display: none;" action = "find_orderfee.html">
+                <p> <label> <span> 선호 음식: </span> <input type = "text" name = "food_orderfee" required/> </label></p>
+                <p> <input type = "submit" name = "submit_orderfee" value = "작성"/> </p>
+            </form>
+    </body>
+</html>

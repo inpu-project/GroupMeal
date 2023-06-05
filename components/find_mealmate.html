@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> 밥친구 찾기 </title>
+        <link rel = "stylesheet" type = "text/css" href = "../css/styles.css">
+        <script type = "text/javascript" src = "../js/all_pages.js"> </script>
+        <script type = "text/javascript" src = "../js/get_posts.js"> </script>
+        <script>
+            const post_num = 10, index = 0;
+            let gender_checked = [], age_checked = [];
+            const mealmate_database = "";
+            let posts = [];
+            window.onload = () => {
+                document.getElementById("search_btn").addEventListener("click", (event) => { update_options(); });
+                update_options();
+                update_page();
+            }
+            function update_options() {
+                gender_checked = [];
+                const gender_options = document.getElementById("gender_option").children;
+                for(let i=1; i<gender_options.length; i++) {
+                    const gender_radio = gender_options[i].children[0];
+                    gender_checked.push(gender_radio.checked);
+                }
+
+                age_checked = [];
+                const age_options = document.getElementById("age_option").children;
+                for(let i=1; i<age_options.length; i++) {
+                    const age_radio = age_options[i].children[0];
+                    age_checked.push(age_radio.checked);
+                }
+
+                // let personality_checked = [];
+                // const personality_options = document.getElementById("personality_option").children;
+                // for(let i=1; i<personality_options.length; i++) {
+                //     const personality_radio = personality_options[i];
+                //     personality_checked.push(personality_radio.style.backgroundColor === "rgb(169, 169, 169)");
+                // }
+
+                console.log(gender_checked, age_checked);
+                posts = get_posts(mealmate_database, gender_checked, age_checked);
+            }
+            function update_page() {
+                let post_content = document.getElementsByClassName("post_content")[0];
+                while(post_content.firstChild) post_content.removeChild(post_content.firstChild);
+                for(let i=index; i<posts.length && i<index+post_num; i++) {
+                    const div_post = document.createElement('div');
+                    div_post.setAttribute('class', 'post');
+
+                    const para1 = document.createElement('p');
+                    para1.innerHTML = `제목: ${posts[i].title} <label style = "font-size: 12px; color: gray;"> &nbsp; \(${posts[i].place}, 몇 분 전\) </label>`;
+                    div_post.appendChild(para1);
+
+                    const para2 = document.createElement('p');
+                    para2.innerHTML = `유저: ${user.username} \(${user.gender}\)`;
+                    div_post.appendChild(para2);
+
+                    const para3 = document.createElement('p');
+                    para3.innerHTML = `시간: ${posts[i].time}`;
+                    div_post.appendChild(para3);
+
+                    const para4 = document.createElement('p');
+                    para4.innerHTML = `선호 음식: ${posts[i].food}`;
+                    div_post.appendChild(para4);
+
+                    post_content.appendChild(div_post);
+                }
+                if(!post_content.firstChild) {
+                    const para = document.createElement('p');
+                    para.innerHTML = "No post found";
+                    post_content.appendChild(para);
+                    return;
+                }
+                if(index == 0) {
+                    const btn_div = document.createElement('div');
+                    const page_btn_div = document.createElement('div');
+                    page_btn_div.className = 'page_btn';
+                    page_btn_div.innerHTML = "<button type = 'button' id = 'next_posts' style = 'right: 0px; position: absolute;'> 다음 </button>";
+
+                    btn_div.appendChild(page_btn_div);
+                    post_content.appendChild(btn_div);
+                }
+                else if(index + post_num >= posts.length) {
+                    const btn_div = document.createElement('div');
+                    const page_btn_div = document.createElement('div');
+                    page_btn_div.className = 'page_btn';
+                    page_btn_div.innerHTML = "<button type = 'button' id = 'prev_posts' style = 'left: 0px; position: absolute;'> 이전 </button>";
+
+                    btn_div.appendChild(page_btn_div);
+                    post_content.appendChild(btn_div);
+                }
+                else {
+                    const btn_div = document.createElement('div');
+                    const page_btn_div = document.createElement('div');
+                    page_btn_div.className = 'page_btn';
+                    btn_div.innerHTML = "<button type = 'button' id = 'prev_posts' style = 'left: 0px; position: absolute;'> 이전 </button> <button type = 'button' id = 'next_posts' style = 'right: 0px; position: absolute;'> 다음 </button>"
+                    
+                    btn_div.appendChild(page_btn_div);
+                    post_content.appendChild(btn_div);
+                }
+            }
+            function onclick_nextbtn() {
+                if(index >= posts.length) return;
+                index += post_num;
+            }
+            function onclick_prevbtn() {
+                if(index == 0) return;
+                index -= post_num;
+            }
+        </script>
+    </head>
+    <body>
+        <div class = "header">
+            <div class = "menu_icon" style = "flex-grow: 1"> 
+                <img src = "../img/menu-icon.png" alt = "menu-icon" onclick = "menu_onclick()">
+            </div>
+            <div class = "logo" style = "flex-grow: 10">
+                <p> <a href = "home.html"> 그룹밀 </a> </p>
+            </div>
+            <div class = "user" style = "flex-grow: 1">
+                <div class = "user_logo" onclick = "user_onclick()">
+                    <p id = "user_name"> 박 </p>
+                </div>
+                <div id = "user_box" style = "display: none;">
+                    <p style = "cursor: pointer;" onclick = "location.href = 'profile.html'"> Profile </p>
+                    <hr>
+                    <p style = "cursor: pointer;" onclick = "logout()"> Logout </p>
+                </div>
+            </div>
+        </div>
+        <div id = "menu_list" style = "display: none;">
+            <nav>
+                <ul>
+                    <li> <p> <a href = "find_mealmate.html">밥친구 찾기</a> </p> </li>
+                    <li> <p> <a href = "find_orderfee.html">배달비 분담 찾기</a></p></li>
+                </ul>
+            </nav>
+        </div>
+        <div class = "filter_option">
+            <form method = "POST">
+                <p id = "gender_option"> 
+                    <label> 성별: </label> 
+                    <label> 남 <input type = "checkbox"/> </label>
+                    <label> 여 <input type = "checkbox"/> </label>
+                </p>
+                <p id = "age_option">
+                    <label> 나이대: </label>
+                    <label> 20대 <input type = "checkbox"/> </label>
+                    <label> 30대 <input type = "checkbox"/> </label>
+                    <label> 40대 <input type = "checkbox"/> </label>
+                    <label> 50대 <input type = "checkbox"/> </label>
+                    <label> 60대~ <input type = "checkbox"/> </label>
+                </p>
+                <!-- <div id = "personality_option">
+                    <label> 선호 성격: </label>
+                    <div class = "keyword"> 활달 </div>
+                    <div class = "keyword"> 조용 </div>
+                    <div class = "keyword"> 시끌 </div>
+                </div> -->
+                <p> <button type = "button" id = "search_btn"> 찾기 </button> </p>
+            </form>
+        </div>
+        <hr style = "width: 80%;">
+        <div class = "post_content">
+            <div class = "post">
+                <p> 제목: ---- <label style = "font-size: 12px; color: gray;"> &nbsp; (장소, 몇 분 전) </label> </p>
+                <p> 유저: ---- (남/여) </p>
+                <p> 시간: ---- </p>
+                <p> 선호 음식: ---- </p>
+            </div>
+            <div class = "post">
+                <p> 제목: ---- <label style = "font-size: 12px; color: gray;"> &nbsp; (장소, 몇 분 전) </label> </p>
+                <p> 유저: ---- (남/여) </p>
+                <p> 선호 시간: ---- </p>
+                <p> 선호 음식: ---- </p>
+            </div>
+            <div>
+                <div class = "page_btn">
+                    <button type = "button" id = "next_posts"> 다음 </button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

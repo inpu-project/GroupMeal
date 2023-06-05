@@ -1,0 +1,151 @@
+/* all pages */
+.header { 
+    text-align: center; font-size: 32px; 
+    height: 42px; width: 100%;
+    margin-top: 20px; margin-bottom: 10px; 
+    display: flex; align-items: stretch; 
+}
+.header .menu_icon img { width: 40px; height: 40px; cursor: pointer; }
+.header .logo p {
+    display: block; position: relative;
+    margin: 0px; top: 50%; transform: translateY(-50%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; 
+}
+.header .logo a { text-decoration: none; color: black; }
+.header .user .user_logo {
+    margin: 0 auto;
+    border: 1px solid black; border-radius: 20px; width: 40px; height: 40px; 
+    cursor: pointer;
+}
+.header .user .user_logo p {
+    display: block; position: relative; margin: 0;
+    font-size: 20px; line-height: 25px; font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center;
+    top: 50%; transform: translateY(-50%);
+}
+.header .user #user_box {
+    position: absolute;
+    width: 100px;
+    background-color: white;
+    border: 1px solid black; border-radius: 10px;
+    margin-top: 10px; right: 33px;
+    font-size: 16px;
+}
+.header .user #user_box p { margin-top: 12px; margin-bottom: 12px; }
+.header .user #user_box hr { margin: 0px; }
+.menu { margin: 8px; }
+.menu nav { font-weight: bold; }
+#menu_list ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    border: 2px solid RoyalBlue;
+    border-top: 0px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#menu_list li { border-top: 2px solid RoyalBlue; }
+#menu_list li p { margin: 5px; }
+#menu_list a { text-decoration: none; color: black}
+
+/* signup.html */
+.content { margin-right: 30px; margin-left: 30px; margin-top: 30px; border: 1px solid black; border-radius: 20px; }
+.content .content_title { text-align: center; }
+.content .kakao_btn {
+    margin: 10px auto;
+    color: transparent;
+    width: 300px; height: 45px;
+    background-image: url("../img/kakao_login/ko/kakao_login_medium_wide.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.content .email_btn {
+    margin: 10px auto;
+    color: white; background-color: royalblue;
+    width: 300px; height: 45px;
+    cursor: pointer;
+    text-align: center; font-weight: bold;
+    border-radius: 10px; 
+}
+.content .email_btn p { position: relative; display: block; top: 50%; transform: translateY(-50%); }
+
+/* email_signup.html */
+.content #signup_form { width: 80%; margin: 0 auto; }
+.content #signup_form span { display: inline-block; width: 120px; }
+.content #signup_form input:is([type = "text"], [type = "email"], [type = "password"]) { width: max(150px, calc(50% - 60px));  overflow: hidden; }
+.content #signup_form input[type = "file"] { overflow: hidden; width: 160px; }
+.content #signup_form #err-message { color: red; }
+
+/* login.html */
+.do_signup { text-align: center; font-size: 15px; text-decoration: underline; }
+.do_signup a { color: black; }
+.login_form { margin: 0 auto; width: 300px; }
+.login_form { font-size: 12px; }
+.login_form input:is([type = "text"], [type = "password"], [type = "submit"]) { width: 100%; height: 30px; }
+.login_form input[type = "submit"] { background-color: #6699CC; border: none; color: white; cursor: pointer; }
+
+/* profile.html */
+.content .user_profile { margin-left: 20px; margin-right: 20px; }
+.user_profile button { margin-bottom: 16px; }
+.user_profile span { display: inline-block; width: 80px; }
+
+/* home.html */
+.post_content { width: 80%; margin: 0 auto; }
+.post_content .post { border: 1px solid black; border-radius: 20px; margin-top: 20px;  }
+.post_content .post p { margin-right: 20px; margin-left: 20px; }
+.post_content .add_post { 
+    position: absolute;
+    right: 40px; bottom: 40px; 
+    width: min(10%, 50px); aspect-ratio: 1/1;
+}
+.post_content .add_post img { width: 100%; height: 100%; cursor: pointer; }
+
+/* find_mealmate.html */
+.filter_option { width: 80%; margin: 0 auto; }
+.filter_option form { font-size: 14px; }
+.filter_option form p { margin-top: 8px; margin-bottom: 8px; }
+.filter_option .keyword {
+    display: inline-block;
+    background-color: #E6E6E6; border: 1px black solid; border-radius: 10px; padding: 5px 5px 5px 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.post_content .page_btn { position: relative; display: block; margin: 0 auto; margin-top: 20px; }
+
+/* post.html */
+.content .post_options { 
+    width: 400px; margin-left: 20px;
+    display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; 
+}
+.content .post_options div { cursor: pointer; }
+.content .post_options div { 
+    position: relative; width: 30%; 
+    border: 1px solid black; border-top-right-radius: 15px; border-top-left-radius: 15px;
+    text-align: center; font-size: 14px; 
+}
+.content #form_mealmate { margin-left: 20px; margin-right: 20px; }
+.content #form_orderfee { margin-left: 20px; margin-right: 20px; }
+
+/* mealmate.html */
+#applicants_list { margin-left: 20px; margin-right: 20px; }
+#applicants { width: 100%; height: 22px; margin-bottom: 15px; display: flex; }
+#applicants .info { flex: 50%; }
+#applicants p { margin: 0; }
+#applicants button { height: 19.5px; }
+#applicants .btn { flex: 50%; }
+#applicants .btn div { position: absolute; right: 60px; }
+
+#apply { margin-left: 20px; margin-right: 20px; margin-bottom: 15px; }
+#apply_cancel { margin-left: 20px; margin-right: 20px; margin-bottom: 15px; }
+
+/* review.html */
+.review_content { margin-right: 30px; margin-left: 30px; margin-top: 30px; border: 1px solid black; border-radius: 20px; }
+.review_content .content_title { text-align: center; }
+.review_content .selected { background-color: #D3D3D3; }
+.review_content button { margin-top: 8px; border: 1px solid black; border-radius: 5px; padding: 2px 8px 2px 8px; }
+.review_content .reportbtn { margin-bottom: 8px; }
+
+/* report.html */
+.report_content { margin-right: 30px; margin-left: 30px; margin-top: 30px; border: 1px solid black; border-radius: 20px; }
+.report_content .content_title { text-align: center; }
+.report_content textarea { margin: 0 auto; display: block; margin-bottom: 8px;}
+.report_content .btns { margin: 0 auto; display: block; margin-bottom: 8px; width: 130px; }
