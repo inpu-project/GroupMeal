@@ -21,6 +21,7 @@ router.get('/join', isNotLoggedIn, (req, res) => {
     res.render('email_signup');
 })
 
+
 // 기본 라우터 
 // router.get('/', (req, res, next) => {});
 router.get('/', (req, res) => {
