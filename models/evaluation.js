@@ -10,14 +10,6 @@ module.exports = class Evaluation extends Sequelize.Model {
                 defaultValue: DataTypes.UUIDV4,
                 primaryKey: true,
             },
-            userId: {
-                type: DataTypes.UUID,
-                allowNull: false,
-                references: {
-                    model: 'users',
-                    key: 'id'
-                }
-            },
             nice: {
                 type: Sequelize.INTEGER, // 친절해요
                 allowNull: false,
@@ -62,11 +54,6 @@ module.exports = class Evaluation extends Sequelize.Model {
         db.Evaluation.belongsTo(db.User, {
             foreignKey: "UserId",
             targetKey: 'id',
-            onDelete: "cascade",
-        });
-        db.Evaluation.hasMany(db.review, {
-            foreignKey: "EvaluationId",
-            sourceKey: 'id',
             onDelete: "cascade",
         });
     }

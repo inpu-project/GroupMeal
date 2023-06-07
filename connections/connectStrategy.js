@@ -92,10 +92,10 @@ app.get('/get_connection_info', async (req, res) => {
 
         let message = [];
 
-        if(connection.type === 'meeting') {
+        if(connection.type === 'deliver') {
             message.append(connection.url);
         }
-        if(connection.type === 'deliver') {
+        if(connection.type === 'meeting') {
             message.append(connection.Host.email);
             message.append(connection.Guest.email);
         }

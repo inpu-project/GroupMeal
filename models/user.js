@@ -69,12 +69,12 @@ module.exports = class User extends Sequelize.Model {
             sourceKey: 'id',
             onDelete: "cascade",
         });
-        db.User.belongsTo(db.Review, {
+        db.User.hasMany(db.Review, {
             foreignKey: "userEvaluateId",
             sourceKey: 'id',
             onDelete: "cascade",
         });
-        db.User.belongsTo(db.Review, {
+        db.User.hasMany(db.Review, {
             foreignKey: "userRecieveId",
             sourceKey: 'id',
             onDelete: "cascade",

@@ -3,7 +3,7 @@
     <head>
         <meta charset = "utf-8">
         <title> 회원가입 </title>
-        <link rel = "stylesheet" type = "text/css" href = "../css/styles.css">
+        <link rel = "stylesheet" type = "text/css" href = "/styles.css">
         <script>
             function pwd_confirm() {
                 if(document.getElementById("password").value != document.getElementById("password_confirm").value) {
@@ -17,7 +17,7 @@
     <body>
         <div class = "header">
             <div class = "logo" style = "flex-grow: 10">
-                <p> <a href = "home.html"> 그룹밀 </a> </p>
+                <p> <a href = "/"> 그룹밀 </a> </p>
             </div>
         </div>
         <div class = "content">
@@ -25,7 +25,7 @@
                 <p> 회원가입 </p>
             </div>
             <hr style = "margin-left: 20px; margin-right: 20px; ">
-            <form id = "signup_form" method = "POST" action = "home.html" onsubmit = "return pwd_confirm()">
+            <form id = "signup_form" method = "POST" action = "/login" onsubmit = "return pwd_confirm()">
                 <p> <label> <span> 닉네임<span style = "display: inline; color: red;">*</span>: </span> <input type = "text" name = "nick" maxlength = "15" autofocus required/> </label> </p>
                 <p> <label> <span> 이메일<span style = "display: inline; color: red;">*</span>: </span> <input type = "email" name = "email" maxlength = "50" required/> </label> </p>
                 <p> <label> <span> 성별<span style = "display: inline; color: red;">*</span>: </span> 남 <input type = "radio" name = "gender" required/> 여 <input type = "radio" name = "gender"/> </label> </p>
