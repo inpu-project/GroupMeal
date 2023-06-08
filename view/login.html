@@ -9,10 +9,28 @@
     <title>로그인</title>
 </head>
 <body>
+    <header class="login_header">
+        <!-- <div class = "header_menu visibility_none">
+            <img src = "img/menu.png" alt = "menu-icon"/>
+        </div> -->
+        <div class = "header_text">
+            <a href = "/">그룹밀</a>
+        </div>
+        <!-- <div class = "header_user visibility_none">
+            <div class = "header_user_logo">김</div>
+        </div> -->
+    </header>
     <div class="content_container">
         <form action="post">
-            
+            <input type = "text" class = "login_box" placeholder = "아이디"/>
+            <input type = "password" class = "login_box" placeholder = "비밀번호"/>
+            <button type = "button" class = "button_content login_button">로그인</button>
         </form>
+        <div class = "kakao_button"></div>
+        <button type = "button" class = "button_content email_button">이메일로 로그인</button>
+        <div class = "login_span">
+            <p>혹시, '그룹밀'이 처음이신가요? &nbsp; <a href = "/join">회원가입</a></p>
+        </div>
     </div>
 </body>
 </html>

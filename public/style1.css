@@ -103,7 +103,7 @@ main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; b
 .choose_personality>ul{display: flex; flex-wrap: wrap; width: calc(65px * 4 + 50px); justify-content: center;}
 .choose_personality li{width: 65px; height: 34px; border: 1px solid #d7d7d7; border-radius: 10px; background: white; text-align: center; color: #6f6f6f;
     margin: 6px 4.5px; box-sizing: border-box; padding-top: 10px;}
-.button_content{font-size: 18px; font-size: 700; border-radius: 10px; background: var(--mint-color); border: none; color:white}
+.button_content{font-size: 18px; font-weight: 700; border-radius: 10px; background: var(--mint-color); border: none; color:white}
 .profile_button{padding: 5px 8px; align-self: flex-start; margin-top: 13px; margin-left:-10px;}
 
 .choose_personality .selected_keyword_blue{border-color: var(--mint-color); color: var(--mint-color);}
@@ -116,6 +116,13 @@ main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; b
 .main_container>section .main_post_title{font-size: 18px; font-weight: 700; line-height: 31px;}
 .main_eat_post{display: flex; justify-content: space-between;}
 /* login page */
-.login_button{
-    width: 349px; height: 57px; border-radius: 10px;
-}
+.login_header { justify-content: center; background-color: white; }
+.login_header .header_text>a { color: black; }
+.content_container>form {display: flex; flex-direction: column; justify-content: center;}
+.login_box{width: 345px; height: 40px; border: 0px; border-bottom: 1px var(--grey-color) solid; margin-bottom: 11px;}
+.login_box::placeholder{color: var(--grey-color);}
+.login_button{ padding: 17px 131px 12px 148px; margin-top: 30px;}
+.kakao_button{background-image: url(img/kakao_login/ko/kakao_login_medium_wide.png); margin-top: 66px; width: 349px; height: 57px; background-size: 100% 100%; }
+.email_button{margin-top: 18px; padding: 19px 118px 14px 118px; background-color: var(--blue-color);}
+.login_span {margin-top: 18px; color: #6f6f6f; font-size: 15px; font-weight:500; }
+.login_span a {color: var(--mint-color); }

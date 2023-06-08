@@ -22,7 +22,7 @@ router.get('/login', isNotLoggedIn, (req, res) => {
 
 // 회원가입 페이지
 router.get('/join', isNotLoggedIn, (req, res) => {
-    res.render('email_signup');
+    res.render('signup');
 });
 
 // 밥친구 찾기 페이지
