@@ -3,21 +3,29 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
+const Evaluation = require('../models/evaluation');
 
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { email, nick, password } = req.body;
+    const { email, nick, password, gender, age, snsId, mbti } = req.body;
     try {
         const exUser = await User.findOne({ where: { email } });
         if (exUser) {
             return res.redirect('/join?error=exist');
         }
         const hash = await bcrypt.hash(password, 12);
-        await User.create({
+        const userId = await User.create({
             email, 
             nick,
             password: hash,
+            gender,
+            age,
+            snsId,
+            mbti
+        });
+        await Evaluation.create({
+            UserId: userId.id,
         });
         return res.redirect('/');
     } catch (error) {

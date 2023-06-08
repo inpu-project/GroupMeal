@@ -10,6 +10,15 @@ module.exports = class Evaluation extends Sequelize.Model {
                 defaultValue: DataTypes.UUIDV4,
                 primaryKey: true,
             },
+            UserId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'users',
+                    key: 'id'
+                },
+                unique: true,
+            },
             nice: {
                 type: Sequelize.INTEGER, // 친절해요
                 allowNull: false,
