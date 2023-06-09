@@ -30,7 +30,8 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
             impromptu
         });
         console.log('user created ', userId);
-        return res.redirect('/');
+        res.redirect('/');
+        return;
     } catch (error) {
         console.error(error);
         return next(error);

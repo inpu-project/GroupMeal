@@ -52,7 +52,9 @@ router.get('/', (req, res) => {
     //     res.render('login');
     //     return;
     // }
-    res.render('home');
+    res.render('home', {
+        isLoggedIn: true,
+    });
 })
 
 module.exports = router;
