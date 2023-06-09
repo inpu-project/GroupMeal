@@ -1,12 +1,12 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const Connection = require('../models/connection');
 
 const router = express.Router();
 
 router.use((req, res, next) => {
     console.log("User: ", req.user);
     res.locals.user = req.user;
-    res.locals.connection = connection;
     next();
 });
 
@@ -47,9 +47,9 @@ router.get('/create_room_order', (req, res) => {
 router.get('/wait_match', async (req, res) => {
     try{
         const user = res.locals.user;
-        const connection = res.locals.connection;
-        const gender = "남자";
-        if(user.gender == false) gender = "여자";
+        const connection = await Connection.findOne({ where: { hostUserId: user.id } });
+        const gender = "남";
+        if(user.gender == false) gender = "여";
         res.render('matching_cancel', { connection: connection, user: user, gender: gender});
     } catch (err) {
         res.status(500).json({ error: err.message });

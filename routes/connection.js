@@ -19,17 +19,31 @@ router.use((req, res, next) => {
 // 방 등록 API
 router.post('/create_match', async (req, res) => {
     try {
-        let typ ="deliver";
         const user = res.locals.user;
-        if(!req.body.url) typ = "meeting";
         const connection = await Connection.create({
             hostUserId: user.id,
             locate: req.body.locate,
             name: req.body.name,
             food: req.body.food,
-            type: typ,
+            type: req.body.type,
+            url: ((req.body.url) ? req.body.url : 'url'),
         });
         res.redirect('/wait_match');
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// 신청취소
+router.delete('/wait_match', async (req, res) => {
+    try {
+        const user = res.locals.user;
+        await Connection.destroy({
+            where:{
+                hostUserId: user.id
+            }
+        })
+        res.redirect('/');
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
