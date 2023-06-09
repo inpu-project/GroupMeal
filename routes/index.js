@@ -11,7 +11,7 @@ router.use((req, res, next) => {
 
 
 // 프로필 페이지
-router.get('/profile', (req, res) => {
+router.get('/profile', isLoggedIn, (req, res) => {
     res.render('profile', { title: '내 정보'});
 });
 
