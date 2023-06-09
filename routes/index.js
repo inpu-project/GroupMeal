@@ -28,13 +28,21 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 });
 
 // 밥친구 찾기 페이지
-router.get('/mealmate', (req, res) => {
-    res.render('find_mealmate', { title: '밥친구 찾기'});
+router.get('/mealmate', async (req, res) => {
+    const connections = await Connection.findAll({  where: {type: "meeting"}});
+    const users = await User.findAll();
+    res.render('find_mealmate', { 
+        connections: connections,
+        users: users,
+    });
 });
 
 // 배달비 분담 찾기 페이지
-router.get('/orderfee', (req, res) => {
-    res.render('find_orderfee', { title: '배달비 분담 찾기'});
+router.get('/orderfee', async (req, res) => {
+    const connections = await Connection.findAll({  where: {type: "deliver"}});
+    res.render('find_orderfee', { 
+        connections: connections,
+    });
 });
 
 router.get('/create_room', (req, res) => {
