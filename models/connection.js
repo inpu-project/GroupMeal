@@ -14,7 +14,7 @@ module.exports = class Review extends Sequelize.Model {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 references: {
-                    model: 'users',
+                    model: 'User',
                     key: 'id'
                 }
             },
@@ -22,7 +22,7 @@ module.exports = class Review extends Sequelize.Model {
                 type: DataTypes.INTEGER,
                 allowNull: true,
                 references: {
-                    model: 'users',
+                    model: 'User',
                     key: 'id'
                 }
             },
