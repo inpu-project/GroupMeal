@@ -1,6 +1,7 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const Connection = require('../models/connection');
+const User = require('../models/user');
 
 const router = express.Router();
 
@@ -48,7 +49,7 @@ router.get('/wait_match', async (req, res) => {
     try{
         const user = res.locals.user;
         const connection = await Connection.findOne({ where: { hostUserId: user.id } });
-        const gender = "남";
+        let gender = "남";
         if(user.gender == false) gender = "여";
         res.render('matching_cancel', { connection: connection, user: user, gender: gender});
     } catch (err) {
@@ -59,13 +60,17 @@ router.get('/wait_match', async (req, res) => {
 
 // 기본 라우터 
 // router.get('/', (req, res, next) => {});
-router.get('/', isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
     // if(!res.locals.user) {
     //     res.render('login');
     //     return;
     // }
+    const connections = await Connection.findAll();
+    const users = await User.findAll();
     res.render('home', {
         isLoggedIn: true,
+        connections: connections,
+        users: users,
     });
 })
 

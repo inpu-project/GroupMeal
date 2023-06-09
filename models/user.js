@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 var DataTypes = require('sequelize/lib/data-types');
+const Connection = require('./connection');
 
 module.exports = class User extends Sequelize.Model {
     static init(sequelize) {
