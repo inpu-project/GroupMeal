@@ -3,8 +3,8 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
 const User = require('./user');
 const Connection = require('./connection');
-const Review = require('./review');
-// const Request = require('./request');
+const Request = require('./request');
+// const Review = require('./review');
 
 const db = {};
 const sequelize = new Sequelize(
