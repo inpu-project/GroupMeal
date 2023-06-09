@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/reset.css">
-    <link rel="stylesheet" href="../public/style1.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style1.css">
     <title>그룹밀 메인페이지</title>
 </head>
 <body>
     <header>
         <div class = "header_menu"> 
-            <img src = "../public/img/menu.png" alt = "menu-icon">
+            <img src = "img/menu.png" alt = "menu-icon">
         </div>
         <div class = "header_text">
-            <a href = "home.html">그룹밀</a>
+            <a href = "/">그룹밀</a>
         </div>
         <div class = "header_user">
             <div class = "header_user_logo">김</div>
@@ -22,10 +22,10 @@
     </header>
     <main>
         <div class="main_list">
-            <div onclick="location.href='find_mealmate.html'">
+            <div onclick="location.href='/mealmate'">
                 🍚 밥 친구
             </div>
-            <div onclick="location.href='find_orderfee.html'">
+            <div onclick="location.href='/orderfee'">
                 🏍️ 배달 주문
             </div>
         </div>
@@ -63,8 +63,8 @@
                 </div>
             </section>
         </div>
-        <div class = "main_add">
-            <img id = "add_btn" src = "../public/img/free-icon-soup-5322266.png" alt = "add_btn"/>
+        <div class = "main_add" onclick="location.href='/post'">
+            <img id = "add_btn" src = "img/free-icon-soup-5322266.png" alt = "add_btn"/>
         </div>
     </main>
 </body>

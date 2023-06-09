@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/reset.css">
-    <link rel="stylesheet" href="../public/style1.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style1.css">
+    <script type = "text/javascript" src="js/get_posts.js"></script>
     <title>그룹밀 - 밥 친구</title>
 </head>
 <body>
     <header>
         <div class = "header_menu"> 
-            <img src = "../public/img/menu.png" alt = "menu-icon">
+            <img src = "img/menu.png" alt = "menu-icon">
         </div>
         <div class = "header_text">
-            <a href = "home.html">그룹밀</a>
+            <a href = "/">그룹밀</a>
         </div>
         <div class = "header_user">
             <div class = "header_user_logo">김</div>
@@ -24,15 +25,15 @@
     <main>
         <div class="main_age_gen_list">
             <ul>
-                <li class="selected_age"><span>#</span> 10대</li>
-                <li class="selected_age"><span>#</span> 20대</li>
-                <li><span>#</span> 30대</li>
-                <li class="selected_age"><span>#</span> 40대</li>
-                <li><span>#</span> 50대</li>
+                <li class="selected_age" onclick="this.classList.toggle('selected_age');"><span>#</span> 10대</li>
+                <li class="selected_age" onclick="this.classList.toggle('selected_age');"><span>#</span> 20대</li>
+                <li onclick="this.classList.toggle('selected_age');"><span>#</span> 30대</li>
+                <li class="selected_age" onclick="this.classList.toggle('selected_age');"><span>#</span> 40대</li>
+                <li><span onclick="this.classList.toggle('selected_age');">#</span> 50대</li>
             </ul>
             <ul>
-                <li class="selected_gender selected_male"><span>#</span> 남자</li>
-                <li><span>#</span> 여자</li>
+                <li class="selected_gender selected_male" onclick="this.classList.toggle('selected_male');"><span>#</span> 남자</li>
+                <li onclick="this.classList.toggle('selected_female')"><span>#</span> 여자</li>
                 <li class="visibility_none"></li>
                 <li class="visibility_none"></li>
                 <li class="visibility_none"></li>
@@ -84,8 +85,8 @@
                 </div>
             </section>
         </div>
-        <div class = "main_add">
-            <img id = "add_btn" src = "../public/img/free-icon-soup-5322266.png" alt = "add_btn"/>
+        <div class = "main_add" onclick="location.href='/post'">
+            <img id = "add_btn" src = "img/free-icon-soup-5322266.png" alt = "add_btn"/>
         </div>
     </main>
 </body>

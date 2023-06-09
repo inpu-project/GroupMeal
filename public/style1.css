@@ -91,7 +91,7 @@ main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; b
 /* signup page */
 .content_container{ display: flex; flex-direction: column; width: 450px; align-items: center;}
 .content_title{font-size: 20px; font-weight: 700; padding: 27px 0 20px 0;}
-.content_line{width:100%; height:3px; background: var(--grey-color); margin-bottom: 46px;}
+/* .content_line{width:100%; height:3px; background: var(--grey-color); margin-bottom: 46px;}
 .content_main>form{width: 349px;}
 .signup input{width: 349px; height: 34px; margin-bottom: 23px; margin-top: 8px; border: 1px solid #d7d7d7; 
     border-radius: 3px; color: #6f6f6f; font-size: 15px; font-weight: 700; padding-left: 10px; box-sizing: border-box;}
@@ -103,7 +103,19 @@ main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; b
 .signup_age span{margin-right: 37px;}
 .content_container .content_main>form .signup_button{height: 57px; padding: 14px; color:white; border-radius: 10px; font-size: 18px; font-weight: 700;}
 .content_container .content_main>form .choose_personality{width: 349px;}
-.choose_personality .selected_keyword_pink{border-color: var(--pink-color); color: var(--pink-color);}
+.choose_personality .selected_keyword_pink{border-color: var(--pink-color); color: var(--pink-color);} */
+.content_line{width:100%; height:3px; background: var(--grey-color);}
+.content_main{width:450px;}
+.content_main>form{margin-top: 22px; padding: 0px 50px 0px 50px; display: flex; flex-direction: column; justify-content: flex-start;}
+.signup_title{font-size:15px; font-weight:700; color:#6f6f6f; margin-top:24px;}
+.signup_box{width:344px; height:32px; border: 1px var(--grey-color) solid; border-radius: 3px; margin-top: 5px;}
+.err-message{font-size:12px; font-weight:500; color: #DE1F64; margin-top: 6px; margin-left: 4px;}
+.signup_flex{display:flex; flex-direction:row; justify-content:space-between; margin-top: 24px; }
+.signup_flex>.signup_title{margin-top:0;}
+.signup_flex>.signup_box{width:284px;}
+.choose_personality .selected_keyword_red{border-color: var(--red-color); color: var(--red-color);}
+.signup_button{width:349px; height:57px; margin: 49px 0px 30px 0px; }
+span.required{color:var(--red-color);}
 
 /* profile page */
 .background_gray{background: #f9f9f9; height: calc(100vh - 71px);}
@@ -116,7 +128,7 @@ main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; b
 .choose_personality>ul{display: flex; flex-wrap: wrap; width: calc(65px * 4 + 50px); justify-content: center;}
 .choose_personality li{width: 65px; height: 34px; border: 1px solid #d7d7d7; border-radius: 10px; background: white; text-align: center; color: #6f6f6f;
     margin: 6px 4.5px; box-sizing: border-box; padding-top: 10px;}
-.button_content{font-size: 18px; font-size: 700; border-radius: 10px; background: var(--mint-color); border: none; color:white;}
+.button_content{font-size: 18px; font-weight: 700; border-radius: 10px; background: var(--mint-color); border: none; color:white}
 .profile_button{padding: 5px 8px; align-self: flex-start; margin-top: 13px; margin-left:-10px;}
 
 .choose_personality .selected_keyword_blue{border-color: var(--mint-color); color: var(--mint-color);}
@@ -161,3 +173,14 @@ BM HANNA Pro; margin-top: 29px; margin-bottom: 40px; text-shadow: 0 2px 2px rgba
 .main_container form .display_flex{justify-content: space-around;}
 .main_container form .display_flex>input{width:155px; height: 54px; border-radius: 10px; font-size: 18px; font-weight: 700;}
 .main_container form .display_flex .cancel_report{color: white; background: var(--grey-color);}
+/* by gyeong wook */
+.login_header { justify-content: center; background-color: white; }
+.login_header .header_text>a { color: black; }
+.content_container>form {display: flex; flex-direction: column; justify-content: center;}
+.login_box{width: 345px; height: 40px; border: 0px; border-bottom: 1px var(--grey-color) solid; margin-bottom: 11px;}
+.login_box::placeholder{color: var(--grey-color);}
+.login_button{ padding: 17px 131px 12px 148px; margin-top: 30px;}
+.kakao_button{background-image: url(img/kakao_login/ko/kakao_login_medium_wide.png); margin-top: 66px; width: 349px; height: 57px; background-size: 100% 100%; }
+.email_button{margin-top: 18px; padding: 19px 118px 14px 118px; background-color: var(--blue-color);}
+.login_span {margin-top: 18px; color: #6f6f6f; font-size: 15px; font-weight:500; }
+.login_span a {color: var(--mint-color); }
