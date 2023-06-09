@@ -35,7 +35,7 @@ header {
 .header_menu>img{ width: 30px; height: 30px;}
 .header_text>a{ color:white; font-weight: 400; font-size: 36px; text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); font-family: 'BM HANNA Pro';}
 .header_user{width: 34px; height: 34px; border-radius: 20px; background: white; position: relative;}
-.header_user>.header_user_logo{position: absolute; font-size:20px; left:8px; top:8px; font-weight: 500;}
+.header_user>.header_user_logo{width:100%; height: 100%; position: absolute; font-size:20px; left:8px; top:8px; font-weight: 500;}
 .header_absolute{position: absolute; color: white; font-weight: 700; font-size: 18px; left:61%; bottom: 15px;}
 
 /* ================================================ */
@@ -210,3 +210,22 @@ text-align: center; font-size: 12px; font-weight: 700; color: #d7d7d7; padding: 
 .wrap_context p {word-wrap: break-word;}
 .to_login_button{margin-top: 10px;}
 .to_login_button>a{font-size: 17px; font-weight: 700; color: white;}
+
+#user_box {
+    display: none;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+    position:absolute;
+    width: 100px;
+    height:100px;
+    background: var(--mint-color);
+    border: 1px solid white;
+    font-size: 16px;
+    top: 53px;
+    right: -18px;
+    z-index: 100;
+}
+header .header_user #user_box p { color: white; font-size: 18px; font-weight: 500; text-align: center;}
+header .header_user #user_box p:nth-child(1) { align-self: end;}
+header .header_user #user_box p:nth-of-type(2) { align-self: start;}
+header .header_user #user_box hr {width:100px; border: 0.5px solid white; height:0px; }

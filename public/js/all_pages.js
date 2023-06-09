@@ -5,7 +5,7 @@ function menu_onclick() {
 }
 function user_onclick() {
     const user_box = document.getElementById("user_box");
-    if(user_box.style.display == "none") user_box.style.display = "block";
+    if(user_box.style.display == "none") user_box.style.display = "grid";
     else user_box.style.display = "none";
 }
 function logout() {
