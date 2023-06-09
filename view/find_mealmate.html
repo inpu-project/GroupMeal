@@ -88,6 +88,27 @@
                     <div class="main_tag_gen blue_tag">20 남</div>
                 </div>
             </section>
+            {% for connection in connections %}
+            <section>
+                <div class="main_eat_post">
+                    <p class="main_post_title">{{connection.name}}</p>
+                    <span>1 / 2</span>
+                </div>
+                <p>메뉴: {{connection.food}}</p>
+                <div class="main_tag_list">
+                    <div class="main_tag_dis yellow_tag">20분 거리</div>
+                    {% for user in users %}
+                    {% if user.id == connection.hostUserId %}
+                    {% if user.gender == false %}
+                    <div class="main_tag_gen pink_tag">{{user.age + '여'}}</div>
+                    {% else %}
+                    <div class="main_tag_gen blue_tag">{{user.age + '남'}}</div>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+            {% endfor %}
         </div>
         <div class = "main_add" onclick="location.href='/post'">
             <img id = "add_btn" src = "img/free-icon-soup-5322266.png" alt = "add_btn"/>

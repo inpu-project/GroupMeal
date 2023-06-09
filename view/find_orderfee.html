@@ -55,6 +55,15 @@
                     <div class="main_tag_dis yellow_tag">10분 거리</div>
                 </div>
             </section>
+            {% for connection in connections %}
+            <section>
+                <p class="main_post_title">{{connection.name}}</p>
+                <p>가게: {{connection.food}}</p>
+                <div class="main_tag_list">
+                    <div class="main_tag_dis yellow_tag">10분 거리</div>
+                </div>
+            </section>
+            {% endfor %}
         </div>
         <div class = "main_add" onclick="location.href='/post'">
             <img id = "add_btn" src = "img/free-icon-soup-5322266.png" alt = "add_btn"/>

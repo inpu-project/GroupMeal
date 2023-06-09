@@ -9,5 +9,5 @@ function user_onclick() {
     else user_box.style.display = "none";
 }
 function logout() {
-    location.href = 'login.html';
+    location.href = '/auth/logout';
 }

@@ -1,5 +1,7 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const Connection = require('../models/connection');
+const User = require('../models/user');
 
 const router = express.Router();
 
@@ -26,13 +28,21 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 });
 
 // 밥친구 찾기 페이지
-router.get('/mealmate', (req, res) => {
-    res.render('find_mealmate', { title: '밥친구 찾기'});
+router.get('/mealmate', async (req, res) => {
+    const connections = await Connection.findAll({  where: {type: "meeting"}});
+    const users = await User.findAll();
+    res.render('find_mealmate', { 
+        connections: connections,
+        users: users,
+    });
 });
 
 // 배달비 분담 찾기 페이지
-router.get('/orderfee', (req, res) => {
-    res.render('find_orderfee', { title: '배달비 분담 찾기'});
+router.get('/orderfee', async (req, res) => {
+    const connections = await Connection.findAll({  where: {type: "deliver"}});
+    res.render('find_orderfee', { 
+        connections: connections,
+    });
 });
 
 router.get('/create_room', (req, res) => {
@@ -43,17 +53,32 @@ router.get('/create_room_order', (req, res) => {
     res.render('create_room_order');
 });
 
+router.get('/wait_match', async (req, res) => {
+    try{
+        const user = res.locals.user;
+        const connection = await Connection.findOne({ where: { hostUserId: user.id } });
+        let gender = "남";
+        if(user.gender == false) gender = "여";
+        res.render('matching_cancel', { connection: connection, user: user, gender: gender});
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
 
 
 // 기본 라우터 
 // router.get('/', (req, res, next) => {});
-router.get('/', isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
     // if(!res.locals.user) {
     //     res.render('login');
     //     return;
     // }
+    const connections = await Connection.findAll();
+    const users = await User.findAll();
     res.render('home', {
         isLoggedIn: true,
+        connections: connections,
+        users: users,
     });
 })
 
