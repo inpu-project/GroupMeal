@@ -11,6 +11,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const authRouter = require('./routes/auth');
+const connectionRouter = require('./routes/connection');
 const indexRouter = require('./routes');
 
 const { sequelize } = require('./models');
@@ -25,7 +26,7 @@ nunjucks.configure('view', {
     watch: true,
 });
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
 .then(() => {
     console.log('데이터베이스 연결 성공');
 })
@@ -52,6 +53,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/connection', connectionRouter);
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 
