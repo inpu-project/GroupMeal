@@ -15,7 +15,13 @@ router.use((req, res, next) => {
 // 프로필 페이지
 router.get('/profile', (req, res) => {
     const user = res.locals.user;
-    res.render('profile', { user, isLoggedIn, title: '내 정보'});
+    let gender = "남";
+    if(user.gender == false) gender = "여";
+    res.render('profile', { 
+        user: user,
+        isLoggedIn,
+        gender: gender,
+    });
 });
 
 // 로그인 페이지
