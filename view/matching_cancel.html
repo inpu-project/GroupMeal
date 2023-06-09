@@ -45,7 +45,9 @@
                     {% endif %}
                 </div>
             </section>
-            <div class="cancel_complete_button" onclick="location.href='/wait_match'">신청취소</div>
+            <form method = "POST" action = "/connection/wait_match">
+                <div class="cancel_complete_button" onclick = "document.forms[0].submit()">신청취소</div>
+            </form>
         </div>
     </main>
 </body>

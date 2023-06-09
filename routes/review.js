@@ -3,11 +3,19 @@ const User = require('../models/user');
 const Evaluation = require('../models/evaluation');
 const Review = require('../models/review')
 const Connection = require('../models/connection')
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
+router.use((req, res, next) => {
+    console.log("User: ", req.user);
+    res.locals.user = req.user;
+    next();
+});
+
+
 // 리뷰 페이지 등록
-app.get('/review', async (req, res) => {
+router.get('/review', async (req, res) => {
     try{
         res.sendFile('views/review.html');
     } catch (err) {
@@ -15,55 +23,45 @@ app.get('/review', async (req, res) => {
     }
 });
 
-app.post('/review', async (req, res) => {
+router.post('/review', async (req, res) => {
     try {
         let review;
-        const {connection, user} = req.body.name;
+        const connectionId = req.body.connectionId;
+        const user = res.locals.user;
+        const connection = await Connection.findByPk(connectionId);
         if(connection.hostUserId === user.id){
             review = await Review.create({
                 userEvaluateId: user.id,
-                userRecieveId: connection.guestUserId,
+                userReceiveId: connection.guestUserId,
             });
         }
         if(connection.guestUserId === user.id){
             review = await Review.create({
-                userEvaluateId: user.id,
-                userRecieveId: connection.hostUserId,
+                userEvaluateId: connection.hostUserId,
+                userReceiveId: user.id,
             });
         }
-        res.json(review);
+        res.redirect('/review');
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
 // 리뷰페이지 저장
-app.post('/evaluation', async (req, res) => {
+router.post('/evaluation', async (req, res) => {
     try {
-        const review = req.body.name;
         const {nice, ontime, fun, communication, again, comfortable} = req.body;
-        let evaluation = await Evaluation.findByPk(review.userRecieveId);
-        evaluation.userId = review.userRecieveId;
-        evaluation.nice += nice;
-        evaluation.ontime += ontime;
-        evaluation.fun += fun;
-        evaluation.communication += communication;
-        evaluation.again += again;
-        evaluation.comfortable += comfortable;
-        await evaluation.save();
-        res.json(evaluation);
+        const review = Review.findOne({where: {userEvaluateId: res.locals.user.Id} });
+        const user1 = User.findByPk(review.userReceiveId);
+        if(nice === 'true') user1.nice++;
+        if(ontime === 'true') user1.ontime++;
+        if(fun === 'true') user1.fun++;
+        if(communication === 'true') user1.communication++;
+        if(again === 'true') user1.again++;
+        if(comfortable === 'true') user1.comfortable++;
+        await user1.save();
+        res.redirect('/');
     } catch (error) {
         res.status(500).json({ error: err.message });
     }
 });
-
-app.delete('/delete_review', async (req, res) => {
-    try{
-        const review = req.body.name;
-        const idx = await Review.indexOf(review);
-        if (idx > -1) users.splice(idx, 1)
-        res.json(idx);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-})
