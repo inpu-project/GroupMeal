@@ -16,9 +16,13 @@
         <div class="header_text">
             <a href="/">그룹밀</a>
         </div>
-        <div class="header_user">
-            <div class="header_user_logo"><a href="/profile">김</a></div>
+        {% if isLoggedIn %}
+        <div class = "header_user">
+            <div class = "header_user_logo"><a href="/profile">김</a></div>
         </div>
+        {% else %}
+        <div class = "to_login_button"><a href="/login">로그인</a></div>
+        {% endif %}
         <div class="header_absolute">배달</div>
     </header>
     <main>

@@ -16,8 +16,8 @@ module.exports = class Review extends Sequelize.Model {
             sequelize,
             timestamps: true,
             paranoid: true,
-            modelName: 'User',
-            tableName: 'users',
+            modelName: 'Review',
+            tableName: 'reviews',
             charset: 'utf8',
             collate: 'utf8_general_ci',
         });
