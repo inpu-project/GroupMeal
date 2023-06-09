@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 var DataTypes = require('sequelize/lib/data-types');
 
-module.exports = class Review extends Sequelize.Model {
+module.exports = class Connection extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
             id: {
