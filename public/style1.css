@@ -22,6 +22,7 @@ body{width: 450px; margin: auto; font-family: 'Baloo Bhaijaan 2';}
 a{text-decoration: none;}
 .visibility_none{visibility: hidden;}
 .display_none{display: none;}
+.display_wrap{flex-wrap: wrap; width: 355px; justify-content: center;}
 .color_mint{color:var(--mint-color);}
 
 /* all pages */
@@ -39,7 +40,9 @@ header {
 
 /* ================================================ */
 /* main page */
-main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; box-sizing: border-box; position: relative;}
+main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; box-sizing: border-box; position: relative; overflow: auto; 
+    -ms-overflow-style: none; scrollbar-width: none;}
+main::-webkit-scrollbar {display: none;}
 /* main list */
 .main_list{display: flex; justify-content: space-evenly; margin-bottom: 24px;}
 .main_list>div{width:198px; height:87px; font-size: 36px; font-weight:400; font-family: 'BM HANNA Pro'; background: white;
@@ -151,6 +154,8 @@ BM HANNA Pro; margin-top: 29px; margin-bottom: 40px; text-shadow: 0 2px 2px rgba
 .login_container .button_content{color: white; font-size: 18px; font-weight: 700;}
 .login_container input:focus{outline: none;}
 .login_to_signup{color:#6f6f6f; margin-top:26px;}
+.kakao_button{background-image: url(img/kakao_login/ko/kakao_login_medium_wide.png); margin-top: 66px; width: 349px; height: 57px; background-size: 100% 100%; }
+.email_button{margin-top: 18px; padding: 19px 118px 14px 118px; background-color: var(--blue-color);}
 
 /* matching page */
 .main_container{width: 410px; display: flex; flex-direction: column; margin: auto; 
@@ -173,14 +178,33 @@ BM HANNA Pro; margin-top: 29px; margin-bottom: 40px; text-shadow: 0 2px 2px rgba
 .main_container form .display_flex{justify-content: space-around;}
 .main_container form .display_flex>input{width:155px; height: 54px; border-radius: 10px; font-size: 18px; font-weight: 700;}
 .main_container form .display_flex .cancel_report{color: white; background: var(--grey-color);}
-/* by gyeong wook */
-/* .login_header { justify-content: center; background-color: white; }
-.login_header .header_text>a { color: black; }
-.content_container>form {display: flex; flex-direction: column; justify-content: center;}
-.login_box{width: 345px; height: 40px; border: 0px; border-bottom: 1px var(--grey-color) solid; margin-bottom: 11px;}
-.login_box::placeholder{color: var(--grey-color);}
-.login_button{ padding: 17px 131px 12px 148px; margin-top: 30px;} */
-.kakao_button{background-image: url(img/kakao_login/ko/kakao_login_medium_wide.png); margin-top: 66px; width: 349px; height: 57px; background-size: 100% 100%; }
-.email_button{margin-top: 18px; padding: 19px 118px 14px 118px; background-color: var(--blue-color);}
-/* .login_span {margin-top: 18px; color: #6f6f6f; font-size: 15px; font-weight:500; }
-.login_span a {color: var(--mint-color); } */
+
+/* review page */
+.report_button{font-size: 10px; font-weight: 700; text-decoration: underline; color: #6f6f6f; margin:12px 0;} 
+.selected_second_title{font-size:15px; font-weight: 700; margin-top: 40px; color: #6f6f6f;}
+.selected_review_button{height:34px; border-radius: 10px; border: 2px solid #d7d7d7; box-sizing: border-box; 
+text-align: center; font-size: 12px; font-weight: 700; color: #d7d7d7; padding: 2.5px 14.5px 0; margin-top: 15px;}
+.selected_mint_color{color: var(--mint-color); border-color: var(--mint-color);}
+.display_flex .selected_review_button{margin-left: 9px; margin-right:9px;}
+.select_under_title{ margin-top: 13px; }
+
+/* apple page */
+.main_container .display_flex .main_post_title{font-size: 18px; font-weight: 500; margin-top:20px;}
+.main_container .display_flex>.main_tag_list{margin-right: 5px;}
+.main_container .display_flex>.margin_left5{margin-left: 5px;}
+.main_container .width_355px{width: 355px; justify-content: space-between;}
+.main_container>.menu_store{font-size: 15px; font-weight: 500; }
+.main_container_center_title{margin-bottom:13px; font-size: 18px;}
+.main_container .likely_form{width: 355px;}
+.main_container .likely_form>.likely_form_line{display: grid; grid-template-columns: 2fr 0.5fr 9fr; margin: 12px 0;}
+.main_container .likely_form>.likely_form_line>.likely_form_title{width: 70px; text-align: center;}
+.main_container .likely_form>.likely_form_line>.likely_form_verticalLine{height:22px; width: 0px; border: 0.5px solid#666; }
+.main_container .likely_form>.likely_form_line>.likely_form_value{width:250px;}
+.main_container .likely_form>.likely_form_line>.likely_form_value ul{display: flex; flex-wrap: wrap; margin-bottom: 0;}
+.main_container .likely_form>.likely_form_line>.likely_form_value .selected_review_button{margin: -4px 8px 12px 0; }
+
+/* mealmate accept */
+.mealmate_request{width:155px; height: 54px; border-radius: 10px; font-size: 18px; font-weight: 700; border:none; background: var(--grey-color); color: white; margin:0 15px;}
+.mealmate_request_mint{background-color: var(--mint-color);}
+
+.wrap_context p {word-wrap: break-word;}

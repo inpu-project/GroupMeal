@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "sk66546654",
+    "password": null,
     "database": "GroupMeal",
     "host": "127.0.0.1",
     "dialect": "mysql"
