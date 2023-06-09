@@ -17,7 +17,7 @@ router.use((req, res, next) => {
 // 방 등록 API
 router.post('/create_match', async (req, res) => {
     try {
-        const user = res.locals.user;
+        const user = res.params.id;
 
         const connection = await Connection.create({
             hostUserId: user.id,

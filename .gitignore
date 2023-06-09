@@ -3,6 +3,7 @@
 
 ### dotenv ###
 .env
+.dotenv
 
 ### Node ###
 # Logs
