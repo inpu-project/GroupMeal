@@ -4,17 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/reset.css">
-    <link rel="stylesheet" href="../public/style1.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style1.css">
+    <script type="text/javascript" src="signup.js"></script>
     <title>회원가입</title>
 </head>
 <body>
+    <header class="login_header">
+        <div class = "header_text">
+            <a href = "/">그룹밀</a>
+        </div>
+    </header>
     <div class="content_container">
         <div class="content_title">회원가입</div>
         <div class="content_line"></div>
         <div class="content_main">
-            <form action="post" action="login.html">
+            <form method="post" action="/">
+                <div class="signup_title"><span class="required">*</span> 닉네임 </div>
+                <input type = "text" class="signup_box" id="nickname"/>
+                <div class="err-message", id="nickname_error"> 사용가능한 닉네임입니다. </div>
+
+                <div class="signup_title"><span class="required">*</span> 이메일 </div>
+                <input type = "text" class="signup_box" id="email"/>
+                <div class="err-message" id="email_error"> 사용가능한 이메일입니다. </div>
+
+                <div class="signup_flex" style = "padding-right: 114px;">
+                    <div class="signup_title"><span class="required">*</span> 성별 </span></div>
+                    <div> <input type = "radio" class="signup_radio" id="gender" name="gender"/> 남자 </div>
+                    <div> <input type = "radio" class="signup_radio" id="gender" name="gender"/> 여자 </div>
+                </div>
                 
+                <div class="signup_flex">
+                    <div class="signup_title" style="padding-top: 14px; padding-bottom: 8px;"><span class="required">*</span> 나이 </div>
+                    <input type = "text" class="signup_box" id="age"/>
+                </div>
+
+                <div class="signup_title"><span class="required">*</span> 비밀번호 </div>
+                <input type = "password" class="signup_box" id="password"/>
+                <div class="err-message" id="password_error"> 사용가능한 비밀번호입니다. </div>
+
+                <div class="signup_title"><span class="required">*</span> 비밀번호 확인 </div>
+                <input type = "password" class="signup_box" id="password_confirm"/>
+                <div class="err-message" id="password_confirmation_error"> 비밀번호가 일치합니다. </div>
+
+                <div class="signup_title"><span class="required">*</span> 나의 성격 키워드 (최대 2개)</div>
+                <div class="choose_personality">
+                    <ul>
+                        <li class="selected_keyword_red" onclick = "this.classList.toggle('selected_keyword_red')">외향적</li>
+                        <li onclick = "this.classList.toggle('selected_keyword_red')">내향적</li>
+                        <li onclick = "this.classList.toggle('selected_keyword_red')">감성적</li>
+                        <li onclick = "this.classList.toggle('selected_keyword_red')">이성적</li>
+                        <li class="selected_keyword_red" onclick = "this.classList.toggle('selected_keyword_red')">계획적</li>
+                        <li onclick = "this.classList.toggle('selected_keyword_red')">즉흥적</li>
+                    </ul>
+                </div>
+                <div class="err-message" id="personalities_error">성격 키워드를 최대 2개 골라주세요.</div>
+
+                <input type = "submit" class="button_content signup_button" value = "회원가입 완료"/>
             </form>
         </div>
     </div>
