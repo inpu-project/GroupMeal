@@ -11,10 +11,10 @@ module.exports = class Review extends Sequelize.Model {
                 primaryKey: true,
             },
             hostUserId: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUIDV4,
                 allowNull: false,
                 references: {
-                    model: 'users',
+                    model: 'User',
                     key: 'id'
                 }
             },

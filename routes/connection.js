@@ -1,5 +1,5 @@
 const User = require('./user');
-const Connection = require('./connection');
+const Connection = require('../models/connection');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const express = require('express');
