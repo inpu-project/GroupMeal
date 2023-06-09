@@ -11,6 +11,7 @@ module.exports = class User extends Sequelize.Model {
             },
             email: {
                 type: Sequelize.STRING(40),
+                defaultValue: "https://aaabbca182@gmail.com",
                 allowNull: false,
                 unique: true,
             },
@@ -24,10 +25,12 @@ module.exports = class User extends Sequelize.Model {
             },
             gender: {
                 type: Sequelize.BOOLEAN, // 여자는 false, 남자는 true
+                defaultValue: false,
                 allowNull: false,
             },
             age: {
                 type: Sequelize.INTEGER.UNSIGNED,
+                defaultValue: 20,
                 allowNull: false,
             },
             provider: {
@@ -42,26 +45,32 @@ module.exports = class User extends Sequelize.Model {
             /* my personality */
             extrovert: {
                 type: Sequelize.BOOLEAN,
+                defaultValue: true,
                 allowNull: false,
             },
             introvert: {
                 type: Sequelize.BOOLEAN,
+                defaultValue: false,
                 allowNull: false,
             },
             emotional: {
                 type: Sequelize.BOOLEAN,
+                defaultValue: false,
                 allowNull: false,
             },
             rational: {
                 type: Sequelize.BOOLEAN,
+                defaultValue: false,
                 allowNull: false,
             },
             planned: {
                 type: Sequelize.BOOLEAN,
+                defaultValue: false,
                 allowNull: false,
             },
             impromptu: {
                 type: Sequelize.BOOLEAN,
+                defaultValue: false,
                 allowNull: false,
             },
 
