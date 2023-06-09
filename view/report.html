@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/reset.css">
     <link rel="stylesheet" href="../public/style1.css">
-    <title>그룹밀 - 방 만들기</title>
+    <title>그룹밀</title>
 </head>
 <body>
     <header>
@@ -22,19 +22,21 @@
     </header>
     <main>
         <div class="main_container">
-            <div class="main_container_title">방 만들기</div>
+            <div class="main_container_title">방장의 수락을 기다리는 중입니다!</div>
             <div class="yellow_line"></div>
-            <div class="main_container_select">
-                <div class="font_border"><a href="create_room.html">밥 친구</a></div>
-                <div class="vertical_line"></div>
-                <div><a href="create_room_order.html">배달 함께 주문</a></div>
-            </div>
-            <form action="post">
-                <div><label for=""><span>방 이름</span><input type="text" required autofocus></label></div>
-                <div><label for=""><span>&nbsp; 메뉴</span><input type="text" required></label></div>
-                <input class="button_content create_button" type="submit" value="방 만들기">
+            <form action="">
+                <textarea name="report" id="report" cols="20" rows="8" placeholder="신고 내용을 입력해주세요"></textarea>
+                <div class="display_flex">
+                    <input class="button_content submit_report" type="submit" value="신고하기">
+                    <input class="cancel_report" type="button" value="뒤로가기" onclick="history_back()">
+                </div>
             </form>
         </div>
     </main>
+    <script>
+        function history_back() {
+            history.back();
+        }
+    </script>
 </body>
 </html>

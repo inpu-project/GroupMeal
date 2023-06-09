@@ -9,10 +9,16 @@
     <title>로그인</title>
 </head>
 <body>
-    <div class="content_container">
-        <form action="post">
-            
+    <div class="content_container login_container">
+        <div class="content_login_title">그룹밀</div>
+        <form action="post" action="home.html" autocomplete="on">
+            <p><label><input type = "text" name = "email" placeholder="아이디"/></label></p>
+            <p><label><input type = "password" name = "pw" placeholder="비밀번호"/></label></p>
+            <input class="button_content sign_button" type="submit" value="로그인">
         </form>
+        <div class="login_to_signup">
+            혹시, '그룹밀'이 처음이신가요? &nbsp;<a class="color_mint" href="signup.html">회원가입</a>
+        </div>
     </div>
 </body>
 </html>

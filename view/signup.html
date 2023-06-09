@@ -13,8 +13,35 @@
         <div class="content_title">회원가입</div>
         <div class="content_line"></div>
         <div class="content_main">
-            <form action="post" action="login.html">
-
+            <form action="post" action="login.html" name="SU" class="signup">
+                <div><label for="">닉네임<br><input type="text" required autofocus></label></div>
+                <div><label for="">이메일<br><input type="email" autocomplete="email" required></label></div>
+                <fieldset>
+                    <div>성별</div>
+                    <label for="">
+                        <input type="radio" value="male" name="gender" checked>
+                        남자
+                    </label>
+                    <label for="">
+                        <input type="radio" value="female" name="gender">
+                        여성
+                    </label>
+                </fieldset>
+                <div class="signup_age"><label for=""><span>나이</span><input type="number" class="width_284" required></label></div>
+                <div><label for="">비밀번호<br><input type="password" required></label></div>
+                <div><label for="">비밀번호 확인<br><input type="password" required></label></div>
+                <div class="choose_personality">
+                    <div>나의 성격 키워드 (최대 2개)</div>
+                    <ul>
+                        <li class="selected_keyword_pink">외향적</li>
+                        <li>내향적</li>
+                        <li>감성적</li>
+                        <li>이성적</li>
+                        <li class="selected_keyword_pink">계획적</li>
+                        <li>즉흥적</li>
+                    </ul>
+                </div>
+                <input class="button_content signup_button" type="submit" value="화원가입 완료">
             </form>
         </div>
     </div>
