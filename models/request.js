@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 var DataTypes = require('sequelize/lib/data-types');
-const User = require("./user");
 
 module.exports = class Request extends Sequelize.Model {
     static init(sequelize) {
@@ -13,26 +12,26 @@ module.exports = class Request extends Sequelize.Model {
             requestUserId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                references: {
-                    model: 'User',
-                    key: 'id'
-                }
+                // references: {
+                //     model: 'User',
+                //     key: 'id'
+                // }
             },
             hostUserId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                references: {
-                    model: 'User',
-                    key: 'id'
-                }
+                // references: {
+                //     model: 'User',
+                //     key: 'id'
+                // }
             },
             conectionId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                references: {
-                    model: 'Connection',
-                    key: 'id'
-                }
+                // references: {
+                //     model: 'Connection',
+                //     key: 'id'
+                // }
             },
             status: {
                 type: DataTypes.STRING,
@@ -51,8 +50,8 @@ module.exports = class Request extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Request.belongsTo(db.User, { foreignKey: 'requestUserId', as: 'Requester' });
-        db.Request.belongsTo(db.User, { foreignKey: 'hostUserId', as: 'Host' });
-        db.Request.belongsTo(db.Connection, { foreignKey: 'connectionId', as: 'Connection' });
+        // db.Request.belongsTo(db.User, { foreignKey: 'requestUserId', as: 'Requester' });
+        // db.Request.belongsTo(db.User, { foreignKey: 'hostUserId', as: 'Host' });
+        // db.Request.belongsTo(db.Connection, { foreignKey: 'connectionId', as: 'Connection' });
     }
 }

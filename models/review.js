@@ -23,13 +23,13 @@ module.exports = class Review extends Sequelize.Model {
         });
     }
     static associate(db) {
-        db.Review.belongsTo(db.User, {
-            foreignKey: "userEvaluateId",
-            targetKey: 'id',
-        });
-        db.Review.belongsTo(db.User, {
-            foreignKey: "userRecieveId",
-            targetKey: 'id',
-        });
+        // db.Review.belongsTo(db.User, {
+        //     foreignKey: "userEvaluateId",
+        //     targetKey: 'id',
+        // });
+        // db.Review.belongsTo(db.User, {
+        //     foreignKey: "userRecieveId",
+        //     targetKey: 'id',
+        // });
     }
 };

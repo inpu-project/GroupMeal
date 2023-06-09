@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 var DataTypes = require('sequelize/lib/data-types');
-const User = require("./user");
 
 module.exports = class Review extends Sequelize.Model {
     static init(sequelize) {
@@ -13,18 +12,18 @@ module.exports = class Review extends Sequelize.Model {
             hostUserId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                references: {
-                    model: 'users',
-                    key: 'id'
-                }
+                // references: {
+                //     model: 'users',
+                //     key: 'id'
+                // }
             },
             guestUserId: {
                 type: DataTypes.INTEGER,
                 allowNull: true,
-                references: {
-                    model: 'users',
-                    key: 'id'
-                }
+                // references: {
+                //     model: 'users',
+                //     key: 'id'
+                // }
             },
             status: {
                 type: DataTypes.STRING,
@@ -65,7 +64,7 @@ module.exports = class Review extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Connection.belongsTo(db.User, { foreignKey: 'hostUserId', targetKey:'id', as: 'Host' });
-        db.Connection.belongsTo(db.User, { foreignKey: 'guestUserId', targetKey: 'id', as: 'Guest' });
+        // db.Connection.belongsTo(db.User, { foreignKey: 'hostUserId', targetKey:'id', as: 'Host' });
+        // db.Connection.belongsTo(db.User, { foreignKey: 'guestUserId', targetKey: 'id', as: 'Guest' });
     }
 }
