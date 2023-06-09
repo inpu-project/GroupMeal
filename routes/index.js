@@ -6,6 +6,7 @@ const router = express.Router();
 router.use((req, res, next) => {
     console.log("User: ", req.user);
     res.locals.user = req.user;
+    res.locals.connection = connection;
     next();
 });
 
@@ -43,6 +44,17 @@ router.get('/create_room_order', (req, res) => {
     res.render('create_room_order');
 });
 
+router.get('/wait_match', async (req, res) => {
+    try{
+        const user = res.locals.user;
+        const connection = res.locals.connection;
+        const gender = "남자";
+        if(user.gender == false) gender = "여자";
+        res.render('matching_cancel', { connection: connection, user: user, gender: gender});
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
 
 
 // 기본 라우터 

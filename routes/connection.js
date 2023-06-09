@@ -2,7 +2,7 @@ const User = require('./user');
 const Connection = require('../models/connection');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
-const axios = require('axios');
+// const axios = require('axios');
 
 const express = require('express');
 const app = express();
@@ -29,7 +29,7 @@ router.post('/create_match', async (req, res) => {
             food: req.body.food,
             type: typ,
         });
-        res.render('home', { user, connection });
+        res.redirect('/wait_match');
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
