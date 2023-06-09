@@ -17,14 +17,17 @@ router.use((req, res, next) => {
 // 방 등록 API
 router.post('/create_match', async (req, res) => {
     try {
-        const user = res.params.id;
-
+        let typ ="deliver";
+        const user = res.locals.user;
+        if(!req.body.url) typ = "meeting";
         const connection = await Connection.create({
             hostUserId: user.id,
-            locate: req.body.locate
+            locate: req.body.locate,
+            name: req.body.name,
+            food: req.body.food,
+            type: typ,
         });
-
-        res.json(connection);
+        res.render('home', { user, connection });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

@@ -34,9 +34,9 @@
                 <div class="font_border"><a href="/create_room_order">배달 함께 주문</a></div>
             </div>
             <form method="post" action="/connection/create_match">
-                <div><label for=""><span>방 이름</span><input type="text" required autofocus></label></div>
-                <div><label for=""><span>&nbsp; 메뉴</span><input type="text" required></label></div>
-                <div><label for=""><span>&nbsp; 링크</span><input type="url" required></label></div>
+                <div><label for=""><span>방 이름</span><input type="text" name="name" required autofocus></label></div>
+                <div><label for=""><span>&nbsp; 메뉴</span><input type="text" name="food" required></label></div>
+                <div><label for=""><span>&nbsp; 링크</span><input type="url" name="url" required></label></div>
                 <input type="hidden" name="type" value="deliver"/>
                 <input class="button_content create_button" type="submit" value="방 만들기">
             </form>

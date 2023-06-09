@@ -25,6 +25,14 @@ module.exports = class Connection extends Sequelize.Model {
                 //     key: 'id'
                 // }
             },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            food: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
             status: {
                 type: DataTypes.STRING,
                 allowNull: false,
