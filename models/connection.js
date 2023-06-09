@@ -10,7 +10,7 @@ module.exports = class Connection extends Sequelize.Model {
                 primaryKey: true,
             },
             hostUserId: {
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 allowNull: false,
                 // references: {
                 //     model: 'users',
@@ -18,7 +18,7 @@ module.exports = class Connection extends Sequelize.Model {
                 // }
             },
             guestUserId: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUID,
                 allowNull: true,
                 // references: {
                 //     model: 'users',
@@ -28,28 +28,28 @@ module.exports = class Connection extends Sequelize.Model {
             status: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                defaultValue: 'pending' // 매칭이 성사되면 'matched'로 변경됩니다.
+                defaultValue: 'pending', // 매칭이 성사되면 'matched'로 변경됩니다.
             },
             type: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                defaultValue: 'meeting' // 배달일 경우 'deliver'로 표기됩니다.
+                defaultValue: 'meeting' ,// 배달일 경우 'deliver'로 표기됩니다.
             },
             url: {
                 type: DataTypes.STRING,
                 allowNull: true,
-                defaultValue: 'url' // 배달 전용입니다. 해당 음식점의 배민 url을 표기합니다.
+                defaultValue: 'url', // 배달 전용입니다. 해당 음식점의 배민 url을 표기합니다.
             },
             createdAt: {
                 type: DataTypes.DATE,
                 allowNull: false,
-                defaultValue: Sequelize.NOW
+                defaultValue: Sequelize.NOW,
             },
 
             // 실시간 위치 정보 // TODO
             locate: {
                 type: DataTypes.STRING,
-                allowNull: true
+                allowNull: true,
             },
             // 후기 정보 // TODO
         }, {
