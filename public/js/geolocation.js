@@ -2,11 +2,14 @@ function onGeoOk(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
+    console.log(lat, lon);
+
     axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lon}&y=${lat}&input_coord=WGS84`,
     {headers:{Authorization: `KakaoAK ${process.env.KAKAO_ID}`}}
     )
     .then(res=>{
-        console.log(res.data.documents)
+        console.log(res.data.documents);
+        console.log(changeRegion(res.data.documents[0].address.region_1depth_name));
         dispatch(changeRegion(res.data.documents[0].address.region_1depth_name))
         dispatch(changeCity(res.data.documents[0].address.region_2depth_name))
     })

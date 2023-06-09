@@ -2,6 +2,8 @@ const User = require('./user');
 const Connection = require('../models/connection');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
+const axios = require('axios');
+
 const express = require('express');
 const app = express();
 app.use(express.json());
