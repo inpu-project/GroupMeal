@@ -35,7 +35,7 @@ router.post('/create_match', async (req, res) => {
 });
 
 // 신청취소
-router.delete('/wait_match', async (req, res) => {
+router.post('/wait_match', async (req, res) => {
     try {
         const user = res.locals.user;
         await Connection.destroy({

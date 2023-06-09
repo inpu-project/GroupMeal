@@ -59,11 +59,11 @@ router.get('/wait_match', async (req, res) => {
 
 // 기본 라우터 
 // router.get('/', (req, res, next) => {});
-router.get('/', isLoggedIn, (req, res) => {
-    // if(!res.locals.user) {
-    //     res.render('login');
-    //     return;
-    // }
+router.get('/', (req, res) => {
+    if(!res.locals.user) {
+        res.render('login');
+        return;
+    }
     res.render('home', {
         isLoggedIn: true,
     });
