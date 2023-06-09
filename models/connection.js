@@ -14,7 +14,7 @@ module.exports = class Review extends Sequelize.Model {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 references: {
-                    model: 'User',
+                    model: 'users',
                     key: 'id'
                 }
             },
@@ -22,7 +22,7 @@ module.exports = class Review extends Sequelize.Model {
                 type: DataTypes.INTEGER,
                 allowNull: true,
                 references: {
-                    model: 'User',
+                    model: 'users',
                     key: 'id'
                 }
             },
@@ -65,7 +65,7 @@ module.exports = class Review extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Connection.belongsTo(db.User, { foreignKey: 'hostUserId', as: 'Host' });
-        db.Connection.belongsTo(db.User, { foreignKey: 'guestUserId', as: 'Guest' });
+        db.Connection.belongsTo(db.User, { foreignKey: 'hostUserId', targetKey:'id', as: 'Host' });
+        db.Connection.belongsTo(db.User, { foreignKey: 'guestUserId', targetKey: 'id', as: 'Guest' });
     }
 }

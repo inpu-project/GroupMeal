@@ -26,12 +26,10 @@ module.exports = class Review extends Sequelize.Model {
         db.Review.belongsTo(db.User, {
             foreignKey: "userEvaluateId",
             targetKey: 'id',
-            onDelete: "cascade",
         });
         db.Review.belongsTo(db.User, {
             foreignKey: "userRecieveId",
             targetKey: 'id',
-            onDelete: "cascade",
         });
     }
 };

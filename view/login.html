@@ -11,7 +11,7 @@
 <body>
     <div class="content_container login_container">
         <div class="content_login_title" onclick="return window.location.href='/'">그룹밀</div>
-        <form action="post" action="/auth/login" autocomplete="on">
+        <form method="post" action="/auth/login" autocomplete="on">
             <p><label><input type = "text" name = "email" placeholder="아이디" required/></label></p>
             <p><label><input type = "password" name = "password" placeholder="비밀번호" required/></label></p>
             <input class="button_content sign_button" type="submit" value="로그인">
