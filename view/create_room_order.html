@@ -29,13 +29,15 @@
             <div class="main_container_title">방 만들기</div>
             <div class="yellow_line"></div>
             <div class="main_container_select">
-                <div class="font_border"><a href="create_room">밥 친구</a></div>
+                <div><a href="/create_room">밥 친구</a></div>
                 <div class="vertical_line"></div>
-                <div><a href="create_room_order">배달 함께 주문</a></div>
+                <div class="font_border"><a href="/create_room_order">배달 함께 주문</a></div>
             </div>
-            <form action="post">
+            <form method="post" action="/connection/create_room">
                 <div><label for=""><span>방 이름</span><input type="text" required autofocus></label></div>
                 <div><label for=""><span>&nbsp; 메뉴</span><input type="text" required></label></div>
+                <div><label for=""><span>&nbsp; 링크</span><input type="url" required></label></div>
+                <input type="hidden" name="type" value="deliver"/>
                 <input class="button_content create_button" type="submit" value="방 만들기">
             </form>
         </div>

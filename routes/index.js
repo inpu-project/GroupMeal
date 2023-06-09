@@ -35,19 +35,19 @@ router.get('/orderfee', (req, res) => {
     res.render('find_orderfee', { title: '배달비 분담 찾기'});
 });
 
-router.get('/post', (req, res) => {
+router.get('/create_room', (req, res) => {
     res.render('create_room');
-})
+});
 
-router.get('/matching_cancel', (req, res) => {
-    res.render('matching_cancel');
+router.get('/create_room_order', (req, res) => {
+    res.render('create_room_order');
 });
 
 
 
 // 기본 라우터 
 // router.get('/', (req, res, next) => {});
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
     // if(!res.locals.user) {
     //     res.render('login');
     //     return;

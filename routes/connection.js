@@ -1,14 +1,23 @@
 const User = require('./user');
 const Connection = require('./connection');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const express = require('express');
 const app = express();
 app.use(express.json());
 
+const router = express.Router();
+
+router.use((req, res, next) => {
+    console.log("User: ", req.user);
+    res.locals.user = req.user;
+    next();
+});
+
 // 방 등록 API
-app.post('/create_match', async (req, res) => {
+router.post('/create_match', async (req, res) => {
     try {
-        const user = req.body.name;
+        const user = res.locals.user;
 
         const connection = await Connection.create({
             hostUserId: user.id,
@@ -22,7 +31,7 @@ app.post('/create_match', async (req, res) => {
 });
 
 // 매칭 신청 API
-app.post('/request_match', async (req, res) => {
+router.post('/request_match', async (req, res) => {
     try {
         const {user, connection} = req.body.name;
 
@@ -39,7 +48,7 @@ app.post('/request_match', async (req, res) => {
 });
 
 // 매칭 수락 및 성공 API
-app.post('/request_accept', async (req, res) => {
+router.post('/request_accept', async (req, res) => {
     try {
         const { requestId } = req.body;
 
@@ -65,7 +74,7 @@ app.post('/request_accept', async (req, res) => {
 });
 
 // 매칭 거절 API
-app.post('/request_reject', async (req, res) => {
+router.post('/request_reject', async (req, res) => {
     try {
         const { requestId } = req.body;
 
@@ -83,7 +92,7 @@ app.post('/request_reject', async (req, res) => {
 });
 
 // 매칭 성공 후 유저별 정보 제공 API
-app.get('/get_connection_info', async (req, res) => {
+router.get('/get_connection_info', async (req, res) => {
     try {
         const { connectionId } = req.body;
 
@@ -106,4 +115,4 @@ app.get('/get_connection_info', async (req, res) => {
     }
 });
 
-app.listen(3000, () => console.log('Server is running on port 3000'));
+module.exports = router;
