@@ -39,9 +39,62 @@ module.exports = class User extends Sequelize.Model {
                 type: Sequelize.STRING(30),
                 allowNull: true,
             },
-            mbti: {
-                type: Sequelize.STRING(4),
-                allowNull: true,
+            /* my personality */
+            extrovert: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+            },
+            introvert: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+            },
+            emotional: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+            },
+            rational: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+            },
+            planned: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+            },
+            impromptu: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+            },
+
+            /* evaluation */
+            nice: {
+                type: Sequelize.INTEGER, // 친절해요
+                allowNull: false,
+                defaultValue: 0,
+            },
+            ontime: {
+                type: Sequelize.INTEGER, // 늦지않았어요
+                allowNull: false,
+                defaultValue: 0,
+            },
+            fun: {
+                type: Sequelize.INTEGER, // 재밌었어요
+                allowNull: false,
+                defaultValue: 0,
+            },
+            communication: {
+                type: Sequelize.INTEGER, // 대화가즐거워요
+                allowNull: false,
+                defaultValue: 0,
+            },
+            again: {
+                type: Sequelize.INTEGER, // 또만나고싶어요
+                allowNull: false,
+                defaultValue: 0,
+            },
+            comfortable: {
+                type: Sequelize.INTEGER, // 분위기편안해요
+                allowNull: false,
+                defaultValue: 0,
             },
             report: {
                 type: Sequelize.INTEGER,
@@ -64,11 +117,11 @@ module.exports = class User extends Sequelize.Model {
         });
     }
     static associate(db) {
-        db.User.hasOne(db.Evaluation, {
-            foreignKey: "UserId",
-            sourceKey: 'id',
-            onDelete: "cascade",
-        });
+        // db.User.hasOne(db.Evaluation, {
+        //     foreignKey: "UserId",
+        //     sourceKey: 'id',
+        //     onDelete: "cascade",
+        // });
         db.User.hasMany(db.Review, {
             foreignKey: "userEvaluateId",
             sourceKey: 'id',

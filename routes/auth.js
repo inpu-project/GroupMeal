@@ -8,7 +8,7 @@ const Evaluation = require('../models/evaluation');
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { email, nick, password, gender, age, snsId, mbti } = req.body;
+    const { nick, email, gender, age, password, extrovert, introvert, emotional, rational, planned, impromptu } = req.body;
     try {
         const exUser = await User.findOne({ where: { email } });
         if (exUser) {
@@ -16,16 +16,18 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
         }
         const hash = await bcrypt.hash(password, 12);
         const userId = await User.create({
-            email, 
+            email,
             nick,
             password: hash,
             gender,
             age,
             snsId,
-            mbti
-        });
-        await Evaluation.create({
-            UserId: userId.id,
+            extrovert,
+            introvert,
+            emotional,
+            rational,
+            planned,
+            impromptu
         });
         return res.redirect('/');
     } catch (error) {

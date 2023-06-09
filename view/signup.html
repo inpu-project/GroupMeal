@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/reset.css">
-    <link rel="stylesheet" href="../public/style1.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style1.css">
     <script type="text/javascript" src="signup.js"></script>
     <title>회원가입</title>
 </head>
 <body>
-    <header class="login_header">
+    <header class="login_header" style = "justify-content: center;">
         <div class = "header_text">
             <a href = "/">그룹밀</a>
         </div>
@@ -20,31 +20,50 @@
         <div class="content_line"></div>
         <div class="content_main">
             <form action="post" action="login.html" name="SU" class="signup">
-                <div><label for="">닉네임<br><input type="text" required autofocus></label></div>
-                <div><label for="">이메일<br><input type="email" autocomplete="email" required></label></div>
+                <div><label for="">닉네임<br><input type="text" name="nick" required autofocus></label></div>
+                <div><label for="">이메일<br><input type="email" name="email" autocomplete="email" required></label></div>
                 <fieldset>
                     <div>성별</div>
                     <label for="">
-                        <input type="radio" value="male" name="gender" checked>
+                        <input type="radio" value="true" name="gender" checked>
                         남자
                     </label>
                     <label for="">
-                        <input type="radio" value="female" name="gender">
+                        <input type="radio" value="false" name="gender">
                         여성
                     </label>
                 </fieldset>
                 <div class="signup_age"><label for=""><span>나이</span><input type="number" class="width_284" required></label></div>
-                <div><label for="">비밀번호<br><input type="password" required></label></div>
-                <div><label for="">비밀번호 확인<br><input type="password" required></label></div>
+                <div><label for="">비밀번호<br><input type="password" name="password" required></label></div>
+                <div><label for="">비밀번호 확인<br><input type="password" name="password_confirm" required></label></div>
                 <div class="choose_personality">
                     <div>나의 성격 키워드 (최대 2개)</div>
                     <ul>
-                        <li class="selected_keyword_pink">외향적</li>
-                        <li>내향적</li>
-                        <li>감성적</li>
-                        <li>이성적</li>
-                        <li class="selected_keyword_pink">계획적</li>
-                        <li>즉흥적</li>
+                        <li onclick = "onclick_keyword(this)">
+                            외향적
+                            <input type = "hidden" name = "extrovert" value = "false"/>
+                        </li>
+                        <li onclick = "onclick_keyword(this)">
+                            내향적
+                            <input type = "hidden" name = "introvert" value = "false"/>
+                        </li>
+                        <li onclick = "onclick_keyword(this)">
+                            감성적
+                            <input type = "hidden" name = "emotional" value = "false"/>
+                        </li>
+                        <li onclick = "onclick_keyword(this)">
+                            이성적
+                            <input type = "hidden" name = "rational" value = "false"/>
+                        </li>
+                        <li onclick = "onclick_keyword(this)">
+                            계획적
+                            <input type = "hidden" name = "planned" value = "false"/>
+                        </li>
+                        <li onclick = "onclick_keyword(this)">
+                            즉흥적
+                            <input type = "hidden" name = "impromptu" value = "false"/>
+                        </li>
+
                     </ul>
                 </div>
                 <input class="button_content signup_button" type="submit" value="화원가입 완료">
