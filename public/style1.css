@@ -208,3 +208,5 @@ text-align: center; font-size: 12px; font-weight: 700; color: #d7d7d7; padding: 
 .mealmate_request_mint{background-color: var(--mint-color);}
 
 .wrap_context p {word-wrap: break-word;}
+.to_login_button{margin-top: 10px;}
+.to_login_button>a{font-size: 17px; font-weight: 700; color: white;}
