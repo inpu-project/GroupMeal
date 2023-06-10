@@ -28,7 +28,7 @@ router.post('/create_match', async (req, res) => {
             type: req.body.type,
             url: ((req.body.url) ? req.body.url : 'url'),
         });
-        res.redirect('/wait_match');
+        res.redirect(`/wait_match?connectionId=${connection.id}`);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
