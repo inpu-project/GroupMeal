@@ -56,6 +56,7 @@
                 </div>
             </section>
             {% for connection in connections %}
+            {% if connection.url != 'url' %}
             <section onclick="request_onclick('{{connection.id}}')">
                 <p class="main_post_title">{{connection.name}}</p>
                 <p>가게: {{connection.food}}</p>
@@ -63,6 +64,7 @@
                     <div class="main_tag_dis yellow_tag">10분 거리</div>
                 </div>
             </section>
+            {% endif %}
             {% endfor %}
         </div>
         <div class = "main_add" onclick="location.href='/create_room_order'">
