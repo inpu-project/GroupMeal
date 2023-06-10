@@ -44,7 +44,7 @@ main{background-color: #f9f9f9; height: calc(100vh - 71px); padding-top: 24px; b
     -ms-overflow-style: none; scrollbar-width: none;}
 main::-webkit-scrollbar {display: none;}
 /* main list */
-.main_list{display: flex; justify-content: space-evenly; margin-bottom: 24px;}
+.main_list{display: none; justify-content: space-evenly; margin-bottom: 24px;}
 .main_list>div{width:198px; height:87px; font-size: 36px; font-weight:400; font-family: 'BM HANNA Pro'; background: white;
     border-radius: 15px; display: flex; justify-content: center; padding-top: 25px; box-sizing: border-box; box-shadow: 0.3px 0.3px 7px var(--yellow-color);}
 

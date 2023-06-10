@@ -89,7 +89,7 @@
                 </div>
             </section>
             {% for connection in connections %}
-            <section>
+            <section onclick="request_onclick('{{connection.id}}')">
                 <div class="main_eat_post">
                     <p class="main_post_title">{{connection.name}}</p>
                     <span>1 / 2</span>

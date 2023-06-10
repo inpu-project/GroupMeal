@@ -29,58 +29,95 @@
             <div class="main_container_title">밥 친구로 신청하시겠습니까?</div>
             <div class="yellow_line"></div>
             <div class="display_flex width_355px">
+                {% if connection.url == "url" %}
                 <div class="margin_left5">
-                    <p class="main_post_title">저랑 곱창드실분~</p>
-                    <p class="menu_store">메뉴: 곱창볶음</p>
+                    <p class="main_post_title">{{connection.name}}</p>
+                    <p class="menu_store">메뉴: {{connection.food}}</p>
                 </div>
                 <div class="main_tag_list">
                     <div class="main_tag_dis yellow_tag">20분 거리</div>
-                    <div class="main_tag_gen pink_tag">23 여</div>
+                    <div class="main_tag_gen pink_tag">{{user.age + ' ' + gender}}</div>
                 </div>
+                {% else %}
+                <div class="margin_left5">
+                    <p class="main_post_title">{{connection.name}}</p>
+                    <p class="menu_store">가게: {{connection.food}}</p>
+                </div>
+                <div class="main_tag_list">
+                    <div class="main_tag_dis yellow_tag">20분 거리</div>
+                </div>
+                {% endif %}
             </div>
             <div class="main_container_center_title">🙋‍♀️방장🙋‍️</div>
             <div class="likely_form">
                 <div class="likely_form_line">
                     <div class="likely_form_title">닉네임</div>
                     <div class="likely_form_verticalLine"></div>
-                    <div class="likely_form_value">권성은</div>
+                    <div class="likely_form_value">{{user.nick}}</div>
                 </div>
                 <div class="likely_form_line">
                     <div class="likely_form_title">성격</div>
                     <div class="likely_form_verticalLine"></div>
                     <div class="likely_form_value">
                         <ul class="display_flex">
+                            {% if user.extrovert == true %}
                             <li class="selected_review_button">외향적</li>
-                            <li class="selected_review_button">감성적</li>
+                            {% endif %}
+                            {% if user.introvert == true %}
+                            <li class="selected_review_button">내성적</li>
+                            {% endif %}
+                            {% if user.emotional == true %}
+                            <li class="selected_review_button">감정적</li>
+                            {% endif %}
+                            {% if user.rational == true %}
+                            <li class="selected_review_button">이성적</li>
+                            {% endif %}
+                            {% if user.planned == true %}
+                            <li class="selected_review_button">계획적</li>
+                            {% endif %}
+                            {% if user.planned == true %}
+                            <li class="selected_review_button">즉흥적</li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="likely_form_line">
                     <div class="likely_form_title">성별</div>
                     <div class="likely_form_verticalLine"></div>
-                    <div class="likely_form_value">여자</div>
+                    <div class="likely_form_value">{{gender}}</div>
                 </div>
                 <div class="likely_form_line">
                     <div class="likely_form_title">나이</div>
                     <div class="likely_form_verticalLine"></div>
-                    <div class="likely_form_value">24</div>
+                    <div class="likely_form_value">{{user.age}}</div>
                 </div>
                 <div class="likely_form_line">
                     <div class="likely_form_title">리뷰</div>
                     <div class="likely_form_verticalLine"></div>
                     <div class="likely_form_value">
                         <ul class="display_flex">
-                            <li class="selected_review_button selected_mint_color">유쾌함 13</li>
-                            <li class="selected_review_button selected_mint_color">말을 잘 함 10</li>
-                            <li class="selected_review_button selected_mint_color">배려를 잘 해줌 9</li>
-                            <li class="selected_review_button selected_mint_color">경청을 잘 해줌 2</li>
-                            <li class="selected_review_button selected_mint_color">시간 약속을 잘 지킴 4</li>
+                            {% if user.fun != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'유쾌함 ' + user.fun}}</li>
+                            {% endif %}
+                            {% if user.communication != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'말을 잘 함 ' + user.communication}}</li>
+                            {% endif %}
+                            {% if user.comfortable != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'배려를 잘 해줌 ' + user.comfortable}}</li>
+                            {% endif %}
+                            {% if user.nice != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'경청을 잘 해줌 ' + user.nice}}</li>
+                            {% endif %}
+                            {% if user.ontime != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'시간 약속을 잘 지킴 ' + user.ontime}}</li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="cancel_complete_button">신청하기</div>
+            <div class="cancel_complete_button" onclick="request_again_onclick('{{connection.id}}')">신청하기</div>
         </div>
     </main>
+    <script src="js/all_pages.js"></script>
 </body>
 </html>

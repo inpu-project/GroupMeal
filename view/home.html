@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <div class = "header_menu"> 
+        <div class = "header_menu" onclick = "menu_onclick()"> 
             <img src = "img/menu.png" alt = "menu-icon">
         </div>
         <div class = "header_text">
@@ -18,7 +18,7 @@
         </div>
         {% if isLoggedIn %}
         <div class = "header_user">
-            <div class = "header_user_logo" onclick = "user_onclick()"></div>
+            <div class = "header_user_logo" onclick = "user_onclick()">김</div>
             <div id="user_box">
                 <p onclick = "location.href = 'profile'">프로필</p>
                 <hr>
@@ -30,7 +30,7 @@
         {% endif %}
     </header>
     <main>
-        <div class="main_list">
+        <div class="main_list" id="menu">
             <div onclick="location.href='/mealmate'">
                 🍚 밥 친구
             </div>
@@ -73,7 +73,7 @@
             </section>
             {% for connection in connections %}
             {% if connection.url == "url" %}
-            <section>
+            <section onclick="request_onclick('{{connection.id}}')">
                 <div class="main_eat_post">
                     <p class="main_post_title">{{connection.name}}</p>
                     <span>1 / 2</span>
@@ -93,7 +93,7 @@
                 </div>
             </section>
             {% else %}
-            <section>
+            <section onclick="request_onclick('{{connection.id}}')">
                 <p class="main_post_title">{{connection.name}}</p>
                 <p>가게: {{connection.food}}</p>
                 <div class="main_tag_list">

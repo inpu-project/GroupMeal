@@ -72,7 +72,40 @@ router.get('/wait_match', async (req, res) => {
         const connection = await Connection.findOne({ where: { hostUserId: user.id } });
         let gender = "남";
         if(user.gender == false) gender = "여";
-        res.render('matching_cancel', { isLoggedIn, connection: connection, user: user, gender: gender});
+        if(connection.guestUserId == null){
+            res.render('matching_cancel', { isLoggedIn, connection: connection, user: user, gender: gender});
+        } else {
+            res.render('mealmate_accept', { isLoggedIn, connection: connection, user: user, gender: gender});
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+router.get('/mealmate_accept', async (req, res) => {
+    try{
+        const connectionId = req.query.connectionId;
+        const connection = await Connection.findOne({ where: { id: connectionId } });
+        const user = await User.findOne({ where: { id: connection.hostUserId } });
+        let gender = "남";
+        if(user.gender == false) gender = "여";
+        res.render('apply', {
+            isLoggedIn, connection: connection, user: user, gender: gender
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+router.get('/matching_dontwant_cancel', async (req, res, next) => {
+    try{
+        const connectionId = req.query.connectionId;
+        const connection = await Connection.findOne({ where: { id: connectionId } });
+        const user = await User.findOne({ where: { id: connection.hostUserId } });
+        let gender = "남";
+        if(user.gender == false) gender = "여";
+        console.log(connection);
+        res.render('matching_idontwant_cancel', {
+            isLoggedIn, connection: connection, user: user, gender: gender
+        });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
