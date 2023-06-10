@@ -14,14 +14,21 @@ router.use((req, res, next) => {
 
 
 // 프로필 페이지
-router.get('/profile', (req, res) => {
+router.get('/profile', isLoggedIn, (req, res) => {
     const user = res.locals.user;
     let gender = "남";
     if(user.gender == false) gender = "여";
+    console.log(user.introvert, user.extrovert, user.emotional, user.rational, user.planned, user.impromptu);
     res.render('profile', { 
         user: user,
         isLoggedIn,
         gender: gender,
+        introvert: user.introvert,
+        extrovert: user.extrovert,
+        emotional: user.emotional,
+        rational: user.rational,
+        planned: user.planned,
+        impromptu: user.impromptu,
     });
 });
 

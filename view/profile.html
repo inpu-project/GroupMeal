@@ -34,12 +34,12 @@
         <div class="choose_personality">
             <div>나의 성격 키워드 (최대 2개)</div>
             <ul>
-                <li class="selected_keyword_blue">외향적</li>
-                <li>내향적</li>
-                <li>감성적</li>
-                <li>이성적</li>
-                <li class="selected_keyword_blue">계획적</li>
-                <li>즉흥적</li>
+                <li {% if introvert %} class="selected_keyword_blue" {% endif %}>외향적</li>
+                <li {% if extrovert %} class="selected_keyword_blue" {% endif %}>내향적</li>
+                <li {% if emotional %} class="selected_keyword_blue" {% endif %}>감성적</li>
+                <li {% if rational %} class="selected_keyword_blue" {% endif %}>이성적</li>
+                <li {% if planned %} class="selected_keyword_blue" {% endif %}>계획적</li>
+                <li {% if impromptu %} class="selected_keyword_blue" {% endif %}>즉흥적</li>
             </ul>
             <button class="button_content profile_button" onclick="window.history.back();">뒤로가기</button>
         </div>
