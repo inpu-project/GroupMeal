@@ -96,11 +96,6 @@ module.exports = class User extends Sequelize.Model {
                 allowNull: false,
                 defaultValue: 0,
             },
-            again: {
-                type: Sequelize.INTEGER, // 또만나고싶어요
-                allowNull: false,
-                defaultValue: 0,
-            },
             comfortable: {
                 type: Sequelize.INTEGER, // 분위기편안해요
                 allowNull: false,

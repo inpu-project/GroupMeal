@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style1.css">
-    <script type = "text/javascript" src="js/get_posts.js"></script>
     <title>그룹밀 - 밥 친구</title>
 </head>
 <body>
@@ -29,22 +28,72 @@
     <main>
         <div class="main_age_gen_list">
             <ul>
-                <li class="selected_age" onclick="this.classList.toggle('selected_age');"><span>#</span> 10대</li>
-                <li class="selected_age" onclick="this.classList.toggle('selected_age');"><span>#</span> 20대</li>
-                <li onclick="this.classList.toggle('selected_age');"><span>#</span> 30대</li>
-                <li class="selected_age" onclick="this.classList.toggle('selected_age');"><span>#</span> 40대</li>
-                <li><span onclick="this.classList.toggle('selected_age');">#</span> 50대</li>
+                <li {% if age10 == "true" %} class="selected_age" {% endif %} id = "age10_option" onclick="return onclick_age_option(this);"><span>#</span> 10대</li>
+                <li {% if age20 == "true"%} class="selected_age" {% endif %} id = "age20_option" onclick="return onclick_age_option(this);"><span>#</span> 20대</li>
+                <li {% if age30 == "true"%} class="selected_age" {% endif %} id = "age30_option" onclick="return onclick_age_option(this);"><span>#</span> 30대</li>
+                <li {% if age40 == "true"%} class="selected_age" {% endif %} id = "age40_option" onclick="return onclick_age_option(this);"><span>#</span> 40대</li>
+                <li {% if age50 == "true"%} class="selected_age" {% endif %} id = "age50_option" onclick="return onclick_age_option(this);"><span>#</span> 50대</li>
             </ul>
             <ul>
-                <li class="selected_gender selected_male" onclick="this.classList.toggle('selected_male');"><span>#</span> 남자</li>
-                <li onclick="this.classList.toggle('selected_female')"><span>#</span> 여자</li>
+                <li {% if male == "true"%} class="selected_gender selected_male" {% endif %} id = "male_option" onclick="return onclick_male_option(this);"><span>#</span> 남자</li>
+                <li {% if female == "true"%} class="selected_gender selected_female" {% endif %} id = "female_option" onclick="return onclick_female_option(this);"><span>#</span> 여자</li>
                 <li class="visibility_none"></li>
                 <li class="visibility_none"></li>
                 <li class="visibility_none"></li>
             </ul>
         </div>
         <div class="main_post">
+            {% for connection in connections %}
+            {% for user in users %} 
+
+            {% set gender_ok = false %}
+            {% if age10 == "true" and (10 <= user.age and user.age <= 19) %}
+            {% set gender_ok = true %}
+            {% endif %}
+            {% if age20 == "true" and (20 <= user.age and user.age <= 29) %}
+            {% set gender_ok = true %}
+            {% endif %}
+            {% if age30 == "true" and (30 <= user.age and user.age <= 39) %}
+            {% set gender_ok = true %}
+            {% endif %}
+            {% if age40 == "true" and (40 <= user.age and user.age <= 49) %}
+            {% set gender_ok = true %}
+            {% endif %}
+            {% if age50 == "true" and 50 <= user.age %}
+            {% set gender_ok = true %}
+            {% endif %}
+
+            {% set age_ok = false %}
+            {% if male == "true" and user.gender == true %}
+            {% set age_ok = true %}
+            {% endif %}
+            {% if female == "true" and user.gender == false %}
+            {% set age_ok = true %}
+            {% endif %}
+
+            {% if gender_ok and age_ok %}
+            
             <section>
+                <div class="main_eat_post">
+                    <p class="main_post_title">{{connection.name}}</p>
+                    <span>1 / 2</span>
+                </div>
+                <p>메뉴: {{connection.food}}</p>
+                <div class="main_tag_list">
+                    <div class="main_tag_dis yellow_tag">20분 거리</div>
+                    {% if user.gender == true %} 
+                    <div class="main_tag_gen blue_tag">{{user.age}} 남</div>
+                    {% else %} 
+                    <div class="main_tag_gen pink_tag">{{user.age}} 여 </div>
+                    {% endif %}
+                </div>
+            </section>
+
+            {% endif %}
+
+            {% endfor %}
+            {% endfor %}
+            <!-- <section>
                 <div class="main_eat_post">
                     <p class="main_post_title">저랑 곱창드실분~</p>
                     <span>1 / 2</span>
@@ -87,9 +136,15 @@
                     <div class="main_tag_dis yellow_tag">30분 거리</div>
                     <div class="main_tag_gen blue_tag">20 남</div>
                 </div>
+<<<<<<< HEAD
             </section>
             {% for connection in connections %}
             <section onclick="request_onclick('{{connection.id}}')">
+=======
+            </section> -->
+            <!-- {% for connection in connections %}
+            <section>
+>>>>>>> a6802f3a3749c513df4ebeb260cf0a348723bb35
                 <div class="main_eat_post">
                     <p class="main_post_title">{{connection.name}}</p>
                     <span>1 / 2</span>
@@ -108,11 +163,12 @@
                     {% endfor %}
                 </div>
             </section>
-            {% endfor %}
+            {% endfor %} -->
         </div>
-        <div class = "main_add" onclick="location.href='/post'">
+        <div class = "main_add" onclick="location.href='/create_room'">
             <img id = "add_btn" src = "img/free-icon-soup-5322266.png" alt = "add_btn"/>
         </div>
     </main>
+    <script type="text/javascript" src="js/get_posts.js"></script>
 </body>
 </html>

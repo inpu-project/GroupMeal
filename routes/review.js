@@ -50,18 +50,19 @@ router.post('/review', async (req, res) => {
 // 리뷰페이지 저장
 router.post('/evaluation', async (req, res) => {
     try {
-        const {nice, ontime, fun, communication, again, comfortable} = req.body;
-        const review = Review.findOne({where: {userEvaluateId: res.locals.user.Id} });
-        const user1 = User.findByPk(review.userReceiveId);
-        if(nice === 'true') user1.nice++;
+        const {ontime, fun, communication, comfortable, nice} = req.body;
+        const review = await Review.findOne({where: {userEvaluateId: res.locals.user.Id} });
+        const user1 = await User.findByPk(review.userReceiveId);
         if(ontime === 'true') user1.ontime++;
         if(fun === 'true') user1.fun++;
         if(communication === 'true') user1.communication++;
-        if(again === 'true') user1.again++;
         if(comfortable === 'true') user1.comfortable++;
+        if(nice === 'true') user1.nice++;
         await user1.save();
         res.redirect('/');
-    } catch (error) {
+    } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
+
+module.exports = router;
