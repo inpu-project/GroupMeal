@@ -18,7 +18,12 @@
         </div>
         {% if isLoggedIn %}
         <div class = "header_user">
-            <div class = "header_user_logo"><a href="/profile">김</a></div>
+            <div class = "header_user_logo" onclick = "user_onclick()">김</div>
+            <div id="user_box">
+                <p onclick = "location.href = 'profile'">프로필</p>
+                <hr>
+                <p onclick = "logout()">로그아웃</p>
+            </div>
         </div>
         {% else %}
         <div class = "to_login_button"><a href="/login">로그인</a></div>
@@ -27,7 +32,7 @@
     </header>
     <main>
         <div class="main_post">
-            <section>
+            <!-- <section>
                 <p class="main_post_title">🏍️ 배달 함께 주문 🏍️</p>
                 <p>가게: 타오마라탕 신촌점</p>
                 <div class="main_tag_list">
@@ -54,7 +59,7 @@
                 <div class="main_tag_list">
                     <div class="main_tag_dis yellow_tag">10분 거리</div>
                 </div>
-            </section>
+            </section> -->
             {% for connection in connections %}
             {% if connection.url != 'url' %}
             <section onclick="request_onclick('{{connection.id}}')">
@@ -70,5 +75,7 @@
         <div class = "main_add" onclick="location.href='/create_room_order'">
             <img id = "add_btn" src = "img/free-icon-soup-5322266.png" alt = "add_btn"/>
         </div>
+    </main>
+    <script src="js/all_pages.js"></script>
 </body>
 </html>

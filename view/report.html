@@ -28,10 +28,10 @@
         <div class="main_container">
             <div class="main_container_title">방장의 수락을 기다리는 중입니다!</div>
             <div class="yellow_line"></div>
-            <form action="">
+            <form method="post" action="/review/report">
                 <textarea name="report" id="report" cols="20" rows="8" placeholder="신고 내용을 입력해주세요"></textarea>
                 <div class="display_flex">
-                    <input class="button_content submit_report" type="submit" value="신고하기">
+                    <input class="button_content submit_report" type="button" onclick="history_back()" value="신고하기">
                     <input class="cancel_report" type="button" value="뒤로가기" onclick="history_back()">
                 </div>
             </form>

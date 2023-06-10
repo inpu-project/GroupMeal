@@ -32,15 +32,31 @@
                 <div class="likely_form_line">
                     <div class="likely_form_title">닉네임</div>
                     <div class="likely_form_verticalLine"></div>
-                    <div class="likely_form_value">{{user.nick}}</div>
+                    <div class="likely_form_value">{{newUser.nick}}</div>
                 </div>
                 <div class="likely_form_line">
                     <div class="likely_form_title">성격</div>
                     <div class="likely_form_verticalLine"></div>
                     <div class="likely_form_value">
                         <ul class="display_flex">
+                            {% if newUser.extrovert == true %}
                             <li class="selected_review_button">외향적</li>
-                            <li class="selected_review_button">감성적</li>
+                            {% endif %}
+                            {% if newUser.introvert == true %}
+                            <li class="selected_review_button">내성적</li>
+                            {% endif %}
+                            {% if newUser.emotional == true %}
+                            <li class="selected_review_button">감정적</li>
+                            {% endif %}
+                            {% if newUser.rational == true %}
+                            <li class="selected_review_button">이성적</li>
+                            {% endif %}
+                            {% if newUser.planned == true %}
+                            <li class="selected_review_button">계획적</li>
+                            {% endif %}
+                            {% if newUser.planned == true %}
+                            <li class="selected_review_button">즉흥적</li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -52,18 +68,28 @@
                 <div class="likely_form_line">
                     <div class="likely_form_title">나이</div>
                     <div class="likely_form_verticalLine"></div>
-                    <div class="likely_form_value">{{user.age}}</div>
+                    <div class="likely_form_value">{{newUser.age}}</div>
                 </div>
                 <div class="likely_form_line">
                     <div class="likely_form_title">리뷰</div>
                     <div class="likely_form_verticalLine"></div>
                     <div class="likely_form_value">
                         <ul class="display_flex">
-                            <li class="selected_review_button selected_mint_color">유쾌함 13</li>
-                            <li class="selected_review_button selected_mint_color">말을 잘 함 10</li>
-                            <li class="selected_review_button selected_mint_color">배려를 잘 해줌 9</li>
-                            <li class="selected_review_button selected_mint_color">경청을 잘 해줌 2</li>
-                            <li class="selected_review_button selected_mint_color">시간 약속을 잘 지킴 4</li>
+                            {% if newUser.fun != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'유쾌함 ' + newUser.fun}}</li>
+                            {% endif %}
+                            {% if newUser.communication != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'말을 잘 함 ' + newUser.communication}}</li>
+                            {% endif %}
+                            {% if newUser.comfortable != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'배려를 잘 해줌 ' + newUser.comfortable}}</li>
+                            {% endif %}
+                            {% if newUser.nice != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'경청을 잘 해줌 ' + newUser.nice}}</li>
+                            {% endif %}
+                            {% if newUser.ontime != 0 %}
+                            <li class="selected_review_button selected_mint_color">{{'시간 약속을 잘 지킴 ' + newUser.ontime}}</li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

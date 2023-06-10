@@ -65,4 +65,8 @@ router.post('/evaluation', async (req, res) => {
     }
 });
 
+router.post('/report', (req, res) => {
+    
+})
+
 module.exports = router;

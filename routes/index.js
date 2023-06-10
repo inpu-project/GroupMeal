@@ -79,12 +79,13 @@ router.get('/wait_match', async (req, res) => {
         const user = res.locals.user;
         const connectionId = req.query.connectionId;
         const connection = await Connection.findOne({ where: { id: connectionId } });
+        const newUser = await User.findOne({ where: { id: connection.guestUserId } });
         let gender = "남";
         if(user.gender == false) gender = "여";
         if(connection.guestUserId == null){
             res.render('matching_cancel', { isLoggedIn, connection: connection, user: user, gender: gender});
         } else {
-            res.render('mealmate_accept', { isLoggedIn, connection: connection, user: user, gender: gender});
+            res.render('mealmate_accept', { isLoggedIn, connection: connection, user: user, gender: gender, newUser: newUser,});
         }
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -197,15 +198,25 @@ router.get('/review_order', isLoggedIn, (req, res) => {
     }
 });
 
+router.get('/evaluation', async (req, res) => {
+    try{
+        const connectionId = req.query.connectionId;
+        res.render('', {
+            isLoggedIn,
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
 // 신고 페이지
 router.get('/report', (req, res) => {
     const user = res.locals.user;
     let gender = "남";
     if(user.gender == false) gender = "여";
-    res.render('profile', { 
+    res.render('report', { 
         user: user,
         isLoggedIn,
-        gender: gender,
     });
 });
 // 기본 라우터 
@@ -223,5 +234,7 @@ router.get('/', isLoggedIn, async (req, res) => {
         users: users,
     });
 })
+
+router.post('/report', )
 
 module.exports = router;

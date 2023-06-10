@@ -18,7 +18,12 @@
         </div>
         {% if isLoggedIn %}
         <div class = "header_user">
-            <div class = "header_user_logo"><a href="/profile">김</a></div>
+            <div class = "header_user_logo" onclick = "user_onclick()">김</div>
+            <div id="user_box">
+                <p onclick = "location.href = 'profile'">프로필</p>
+                <hr>
+                <p onclick = "logout()">로그아웃</p>
+            </div>
         </div>
         {% else %}
         <div class = "to_login_button"><a href="/login">로그인</a></div>
@@ -165,5 +170,6 @@
         </div>
     </main>
     <script type="text/javascript" src="js/get_posts.js"></script>
+    <script src="js/all_pages.js"></script>
 </body>
 </html>
