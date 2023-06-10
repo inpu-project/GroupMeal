@@ -68,13 +68,11 @@ router.post('/request_match', async (req, res) => {
 
 router.put('/matching_dontwant_cancel', async (req, res) => {
     try{
-        console.log('hi!!!!!!!!!!!!!!!!!!!!!!!!!')
         const connectionId = req.query.connectionId;
         const connection = await Connection.findOne({ where: { id: connectionId } });
         connection.guestUserId = req.locals.user.id;
-        console.log(connection)
         connection.save();
-        res.json(connection);
+        res.redirect(`/matching_dontwant?connectionId=${connectionId}`);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
