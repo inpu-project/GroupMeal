@@ -69,11 +69,12 @@
                 </div>
             </div>
             <div class="display_flex">
-                <button class="mealmate_request mealmate_request_mint">수락하기</button>
+                <button class="mealmate_request mealmate_request_mint" onclick="request_final_access_onclick('{{connection.id}}', '{{connection.type}}')">수락하기</button>
                 <button class="mealmate_request" onclick="history_back()">거절하기</button>
             </div>
         </div>
     </main>
+    <script src="js/all_pages.js"></script>
     <script>
         function history_back() {
             history.back();

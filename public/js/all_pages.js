@@ -5,7 +5,7 @@ function menu_onclick() {
 }
 function user_onclick() {
     const user_box = document.getElementById("user_box");
-    if(user_box.style.display == "none") user_box.style.display = "grid";
+    if(user_box.style.display === "none") user_box.style.display = "grid";
     else user_box.style.display = "none";
 }
 function request_onclick(connectionId) {
@@ -16,4 +16,12 @@ function request_again_onclick(connectionId) {
 }
 function logout() {
     location.href = '/auth/logout';
+}
+function request_final_access_onclick(connectionId, connectionType) {
+    if(connectionType === "deliver") {
+        window.location.href = `/mealmate_order_success?connectionId=${connectionId}`;
+    }
+    if(connectionType === "meeting") {
+        window.location.href = `/mealmate_eat_success?connectionId=${connectionId}`;
+    }
 }
