@@ -1,5 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const { Op } = require('sequelize');
 const Connection = require('../models/connection');
 const User = require('../models/user');
 
@@ -29,11 +30,18 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 
 // 밥친구 찾기 페이지
 router.get('/mealmate', async (req, res) => {
-    const connections = await Connection.findAll({  where: {type: "meeting"}});
+    const connections = await Connection.findAll({ where: {type: "meeting"}});
     const users = await User.findAll();
     res.render('find_mealmate', { 
         connections: connections,
         users: users,
+        age10: req.query.age10,
+        age20: req.query.age20,
+        age30: req.query.age30,
+        age40: req.query.age40,
+        age50: req.query.age50,
+        male: req.query.male,
+        female: req.query.female,
     });
 });
 
