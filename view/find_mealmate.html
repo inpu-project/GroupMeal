@@ -29,14 +29,14 @@
         <div class="main_age_gen_list">
             <ul>
                 <li {% if age10 == "true" %} class="selected_age" {% endif %} id = "age10_option" onclick="return onclick_age_option(this);"><span>#</span> 10대</li>
-                <li {% if age20 == "true"%} class="selected_age" {% endif %} id = "age20_option" onclick="return onclick_age_option(this);"><span>#</span> 20대</li>
-                <li {% if age30 == "true"%} class="selected_age" {% endif %} id = "age30_option" onclick="return onclick_age_option(this);"><span>#</span> 30대</li>
-                <li {% if age40 == "true"%} class="selected_age" {% endif %} id = "age40_option" onclick="return onclick_age_option(this);"><span>#</span> 40대</li>
-                <li {% if age50 == "true"%} class="selected_age" {% endif %} id = "age50_option" onclick="return onclick_age_option(this);"><span>#</span> 50대</li>
+                <li {% if age20 == "true" %} class="selected_age" {% endif %} id = "age20_option" onclick="return onclick_age_option(this);"><span>#</span> 20대</li>
+                <li {% if age30 == "true" %} class="selected_age" {% endif %} id = "age30_option" onclick="return onclick_age_option(this);"><span>#</span> 30대</li>
+                <li {% if age40 == "true" %} class="selected_age" {% endif %} id = "age40_option" onclick="return onclick_age_option(this);"><span>#</span> 40대</li>
+                <li {% if age50 == "true" %} class="selected_age" {% endif %} id = "age50_option" onclick="return onclick_age_option(this);"><span>#</span> 50대</li>
             </ul>
             <ul>
-                <li {% if male == "true"%} class="selected_gender selected_male" {% endif %} id = "male_option" onclick="return onclick_male_option(this);"><span>#</span> 남자</li>
-                <li {% if female == "true"%} class="selected_gender selected_female" {% endif %} id = "female_option" onclick="return onclick_female_option(this);"><span>#</span> 여자</li>
+                <li {% if male == "true" %} class="selected_gender selected_male" {% endif %} id = "male_option" onclick="return onclick_male_option(this);"><span>#</span> 남자</li>
+                <li {% if female == "true" %} class="selected_gender selected_female" {% endif %} id = "female_option" onclick="return onclick_female_option(this);"><span>#</span> 여자</li>
                 <li class="visibility_none"></li>
                 <li class="visibility_none"></li>
                 <li class="visibility_none"></li>
@@ -45,7 +45,7 @@
         <div class="main_post">
             {% for connection in connections %}
             {% for user in users %} 
-
+            {% if connection.hostUserId == user.id %}
             {% set gender_ok = false %}
             {% if age10 == "true" and (10 <= user.age and user.age <= 19) %}
             {% set gender_ok = true %}
@@ -91,6 +91,7 @@
 
             {% endif %}
 
+            {% endif %}
             {% endfor %}
             {% endfor %}
             <!-- <section>
@@ -136,15 +137,9 @@
                     <div class="main_tag_dis yellow_tag">30분 거리</div>
                     <div class="main_tag_gen blue_tag">20 남</div>
                 </div>
-<<<<<<< HEAD
             </section>
             {% for connection in connections %}
             <section onclick="request_onclick('{{connection.id}}')">
-=======
-            </section> -->
-            <!-- {% for connection in connections %}
-            <section>
->>>>>>> a6802f3a3749c513df4ebeb260cf0a348723bb35
                 <div class="main_eat_post">
                     <p class="main_post_title">{{connection.name}}</p>
                     <span>1 / 2</span>
