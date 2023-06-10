@@ -24,6 +24,7 @@ router.get('/profile', (req, res) => {
     });
 });
 
+
 // 로그인 페이지
 router.get('/login', isNotLoggedIn, (req, res) => {
     res.render('login');
@@ -103,6 +104,7 @@ router.get('/mealmate_accept', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 })
+
 router.get('/matching_dontwant_cancel', async (req, res) => {
     try{
         const user = res.locals.user;
@@ -113,15 +115,99 @@ router.get('/matching_dontwant_cancel', async (req, res) => {
         await connection.save();
         let gender = "남";
         if(user.gender == false) gender = "여";
-        res.render('matching_idontwant_cancel', {
-            isLoggedIn, connection: connection, user: hostUser, gender: gender
+        if(connection.status === "matched") {
+            if(connection.type === "deliver") {
+                res.render('mealmate_order_success', {
+                    isLoggedIn, connection: connection, user: hostUser, gender: gender
+                });
+            }
+            if(connection.type === "meeting") {
+                res.render('mealmate_eat_success', {
+                    isLoggedIn, connection: connection, user: hostUser, gender: gender
+                });
+            }
+        }
+        else {
+            res.render('matching_idontwant_cancel', {
+                isLoggedIn, connection: connection, user: hostUser, gender: gender
+            });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
+router.get('/mealmate_eat_success', async (req, res) => {
+    try{
+        const connectionId = req.query.connectionId;
+        const connection = await Connection.findOne({ where: { id: connectionId } });
+        const user = await User.findOne({ where: { id: connection.hostUserId } });
+        let gender = "남";
+
+        connection.status = "matched";
+        await connection.save();
+
+        if(user.gender == false) gender = "여";
+        res.render('mealmate_eat_success', {
+            isLoggedIn, connection: connection, user: user, gender: gender
         });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 })
 
+router.get('/mealmate_order_success', async (req, res) => {
+    try{
+        const connectionId = req.query.connectionId;
+        const connection = await Connection.findOne({ where: { id: connectionId } });
+        const user = await User.findOne({ where: { id: connection.hostUserId } });
+        let gender = "남";
 
+        connection.status = "matched";
+        await connection.save();
+
+        if(user.gender == false) gender = "여";
+        res.render('mealmate_order_success', {
+            isLoggedIn, connection: connection, user: user, gender: gender
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+})
+
+router.get('/review_eat', isLoggedIn, (req, res) => {
+    try{
+        const connectionId = req.query.connectionId;
+        res.render('review_eat', {
+            isLoggedIn,
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.get('/review_order', isLoggedIn, (req, res) => {
+    try {
+        const connectionId = req.query.connectionId;
+        res.render('review_order', {
+            isLoggedIn,
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// 신고 페이지
+router.get('/report', (req, res) => {
+    const user = res.locals.user;
+    let gender = "남";
+    if(user.gender == false) gender = "여";
+    res.render('profile', { 
+        user: user,
+        isLoggedIn,
+        gender: gender,
+    });
+});
 // 기본 라우터 
 // router.get('/', (req, res, next) => {});
 router.get('/', isLoggedIn, async (req, res) => {

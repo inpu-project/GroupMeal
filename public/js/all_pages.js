@@ -17,3 +17,19 @@ function request_again_onclick(connectionId) {
 function logout() {
     location.href = '/auth/logout';
 }
+function request_final_access_onclick(connectionId, connectionType) {
+    if(connectionType === "deliver") {
+        window.location.href = `/mealmate_order_success?connectionId=${connectionId}`;
+    }
+    if(connectionType === "meeting") {
+        window.location.href = `/mealmate_eat_success?connectionId=${connectionId}`;
+    }
+}
+function request_finish_matching(connectionId, connectionType) {
+    if(connectionType === "deliver") {
+        window.location.href = `/review_order?connectionId=${connectionId}`;
+    }
+    if(connectionType === "meeting") {
+        window.location.href = `/review_eat?connectionId=${connectionId}`;
+    }
+}
