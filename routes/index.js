@@ -186,15 +186,25 @@ router.get('/mealmate_order_success', async (req, res) => {
 })
 
 router.get('/review_eat', isLoggedIn, (req, res) => {
-    res.render('review_eat', {
-        isLoggedIn,
-    });
+    try{
+        const connectionId = req.query.connectionId;
+        res.render('review_eat', {
+            isLoggedIn,
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 router.get('/review_order', isLoggedIn, (req, res) => {
-    res.render('review_order', {
-        isLoggedIn,
-    });
+    try {
+        const connectionId = req.query.connectionId;
+        res.render('review_order', {
+            isLoggedIn,
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 router.get('/report', isLoggedIn, (req, res) => {
