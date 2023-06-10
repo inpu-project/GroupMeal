@@ -2,7 +2,7 @@ const User = require('./user');
 const Connection = require('../models/connection');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
-// const axios = require('axios');
+const axios = require('axios');
 
 const express = require('express');
 const app = express();
@@ -20,14 +20,23 @@ router.use((req, res, next) => {
 router.post('/create_match', async (req, res) => {
     try {
         const user = res.locals.user;
+        const axiosResult = await axios({
+            url: `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${req.body.lon}&y=${req.body.lat}&input_coord=WGS84`,
+            method: 'get',
+            headers:{Authorization: `KakaoAK ${process.env.KAKAO_ID}`},
+        });
+        console.log(axiosResult.data.documents);
         const connection = await Connection.create({
             hostUserId: user.id,
-            // locate: req.body.locate,
             name: req.body.name,
             food: req.body.food,
             type: req.body.type,
             url: ((req.body.url) ? req.body.url : 'url'),
+            lon: req.body.lon,
+            lat: req.body.lat,
+            region: axiosResult.data.documents[0].address.region_2depth_name,
         });
+        console.log(connection);
         res.redirect(`/wait_match?connectionId=${connection.id}`);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -72,7 +81,7 @@ router.put('/matching_dontwant_cancel', async (req, res) => {
         const connection = await Connection.findOne({ where: { id: connectionId } });
         connection.guestUserId = req.locals.user.id;
         connection.save();
-        res.redirect(`/matching_dontwant?connectionId=${connectionId}`);
+        res.json(connection);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

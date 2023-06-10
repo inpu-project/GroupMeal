@@ -96,7 +96,7 @@ router.get('/mealmate_accept', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 })
-router.get('/matching_dontwant', async (req, res) => {
+router.get('/matching_dontwant_cancel', async (req, res) => {
     try{
         const user = res.locals.user;
         const connectionId = req.query.connectionId;
@@ -106,7 +106,6 @@ router.get('/matching_dontwant', async (req, res) => {
         await connection.save();
         let gender = "남";
         if(user.gender == false) gender = "여";
-        console.log(connection);
         res.render('matching_idontwant_cancel', {
             isLoggedIn, connection: connection, user: hostUser, gender: gender
         });

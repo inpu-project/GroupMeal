@@ -55,9 +55,17 @@ module.exports = class Connection extends Sequelize.Model {
             },
 
             // 실시간 위치 정보 // TODO
-            locate: {
-                type: DataTypes.STRING,
+            lon: {
+                type: DataTypes.FLOAT,
                 allowNull: true,
+            },
+            lat: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+            },
+            region: {
+                type: DataTypes.STRING,
+                allowNull: true
             },
             // 후기 정보 // TODO
         }, {

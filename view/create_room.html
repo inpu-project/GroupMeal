@@ -37,9 +37,13 @@
                 <div><label for=""><span>방 이름</span><input type="text" name="name" required autofocus></label></div>
                 <div><label for=""><span>&nbsp; 메뉴</span><input type="text" name="food" required></label></div>
                 <input type="hidden" name="type" value="meeting"/>
+                <input type="hidden" id = "lat" name="lat" value=""/>
+                <input type="hidden" id = "lon" name="lon" value=""/>
                 <input class="button_content create_button" type="submit" value="방 만들기">
             </form>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="js/geolocation.js"></script>
 </body>
 </html>
