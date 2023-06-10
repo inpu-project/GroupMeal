@@ -15,7 +15,14 @@ router.use((req, res, next) => {
 
 // 프로필 페이지
 router.get('/profile', (req, res) => {
-    res.render('profile', { title: '내 정보'});
+    const user = res.locals.user;
+    let gender = "남";
+    if(user.gender == false) gender = "여";
+    res.render('profile', { 
+        user: user,
+        isLoggedIn,
+        gender: gender,
+    });
 });
 
 // 로그인 페이지
@@ -32,7 +39,8 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 router.get('/mealmate', async (req, res) => {
     const connections = await Connection.findAll({ where: {type: "meeting"}});
     const users = await User.findAll();
-    res.render('find_mealmate', { 
+    res.render('find_mealmate', {
+        isLoggedIn,
         connections: connections,
         users: users,
         age10: req.query.age10,
@@ -48,17 +56,22 @@ router.get('/mealmate', async (req, res) => {
 // 배달비 분담 찾기 페이지
 router.get('/orderfee', async (req, res) => {
     const connections = await Connection.findAll({  where: {type: "deliver"}});
-    res.render('find_orderfee', { 
+    res.render('find_orderfee', {
+        isLoggedIn,
         connections: connections,
     });
 });
 
 router.get('/create_room', (req, res) => {
-    res.render('create_room');
+    res.render('create_room', {
+        isLoggedIn,
+    });
 });
 
 router.get('/create_room_order', (req, res) => {
-    res.render('create_room_order');
+    res.render('create_room_order', {
+        isLoggedIn,
+    });
 });
 
 router.get('/wait_match', async (req, res) => {
@@ -67,7 +80,7 @@ router.get('/wait_match', async (req, res) => {
         const connection = await Connection.findOne({ where: { hostUserId: user.id } });
         let gender = "남";
         if(user.gender == false) gender = "여";
-        res.render('matching_cancel', { connection: connection, user: user, gender: gender});
+        res.render('matching_cancel', { isLoggedIn, connection: connection, user: user, gender: gender});
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -84,7 +97,7 @@ router.get('/', isLoggedIn, async (req, res) => {
     const connections = await Connection.findAll();
     const users = await User.findAll();
     res.render('home', {
-        isLoggedIn: true,
+        isLoggedIn,
         connections: connections,
         users: users,
     });
