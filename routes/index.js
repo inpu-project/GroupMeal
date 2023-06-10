@@ -84,7 +84,8 @@ router.get('/create_room_order', (req, res) => {
 router.get('/wait_match', async (req, res) => {
     try{
         const user = res.locals.user;
-        const connection = await Connection.findOne({ where: { hostUserId: user.id } });
+        const connectionId = req.query.connectionId;
+        const connection = await Connection.findOne({ where: { id: connectionId } });
         let gender = "남";
         if(user.gender == false) gender = "여";
         if(connection.guestUserId == null){
@@ -112,14 +113,17 @@ router.get('/mealmate_accept', async (req, res) => {
 })
 router.get('/matching_dontwant_cancel', async (req, res, next) => {
     try{
+        const user = res.locals.user;
         const connectionId = req.query.connectionId;
         const connection = await Connection.findOne({ where: { id: connectionId } });
-        const user = await User.findOne({ where: { id: connection.hostUserId } });
+        const hostUser = await User.findOne({ where: { id: connection.hostUserId } });
+        connection.guestUserId = user.id;
+        await connection.save();
         let gender = "남";
         if(user.gender == false) gender = "여";
         console.log(connection);
         res.render('matching_idontwant_cancel', {
-            isLoggedIn, connection: connection, user: user, gender: gender
+            isLoggedIn, connection: connection, user: hostUser, gender: gender
         });
     } catch (err) {
         res.status(500).json({ error: err.message });
