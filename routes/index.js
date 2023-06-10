@@ -91,8 +91,25 @@ router.get('/wait_match', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
-})
+});
 
+router.get('/review_eat', isLoggedIn, (req, res) => {
+    res.render('review_eat', {
+        isLoggedIn,
+    });
+});
+
+router.get('/review_order', isLoggedIn, (req, res) => {
+    res.render('review_order', {
+        isLoggedIn,
+    });
+});
+
+router.get('/report', isLoggedIn, (req, res) => {
+    res.render('report', {
+        isLoggedIn,
+    });
+});
 
 // 기본 라우터 
 // router.get('/', (req, res, next) => {});

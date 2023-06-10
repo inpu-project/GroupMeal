@@ -30,20 +30,28 @@
             <div class="yellow_line"></div>
             <div class="selected_second_title">'밥 친구'는 선호 성격과 일치하는 사람이었나요?</div>
             <ul class="display_flex">
-                <li class="selected_review_button selected_mint_color">예</li>
-                <li class="selected_review_button">아니오</li>
+                <li class="selected_review_button selected_mint_color" id = "personality_yes">예</li>
+                <li class="selected_review_button" id = "personality_no">아니오</li>
             </ul>
             <div class="selected_second_title select_under_title">'밥 친구'는 어땠는지 키워드를 눌러주세요!</div>
             <ul class="display_flex display_wrap">
-                <li class="selected_review_button selected_mint_color">시간 약속을 잘 지킴</li>
-                <li class="selected_review_button">유쾌함</li>
-                <li class="selected_review_button">말을 잘 함</li>
-                <li class="selected_review_button selected_mint_color">배려를 잘 해줌</li>
-                <li class="selected_review_button">경청을 잘 해줌</li>
+                <li class="selected_review_button" onclick = "onclick_keyword(this, 'ontime');">시간 약속을 잘 지킴</li>
+                <li class="selected_review_button" onclick = "onclick_keyword(this, 'fun');">유쾌함</li>
+                <li class="selected_review_button" onclick = "onclick_keyword(this, 'communication');">말을 잘 함</li>
+                <li class="selected_review_button" onclick = "onclick_keyword(this, 'comfortable');">배려를 잘 해줌</li>
+                <li class="selected_review_button" onclick = "onclick_keyword(this, 'nice');">경청을 잘 해줌</li>
             </ul>
-            <div class="report_button">문제가 있었나요? 신고하기 ️🚨</div>
-            <div class="cancel_complete_button">리뷰 완료!</div>
+            <div class="report_button" onclick = "return location.href = '/report'">문제가 있었나요? 신고하기 ️🚨</div>
+            <form method = "POST" action = '/review/evaluation'>
+                <input type = "hidden" id = "ontime" name = "ontime" value = "false"/>
+                <input type = "hidden" id = "fun" name = "fun" value = "false"/>
+                <input type = "hidden" id = "communication" name = "communication" value = "false"/>
+                <input type = "hidden" id = "comfortable" name = "comfortable" value = "false"/>
+                <input type = "hidden" id = "nice" name = "nice" value = "false"/>
+                <div class="cancel_complete_button" onclick = "document.forms[0].submit()">리뷰 완료!</div>
+            </form>
         </div>
     </main>
+    <script text="text/javascript" src="js/review_eat.js"></script>
 </body>
 </html>
